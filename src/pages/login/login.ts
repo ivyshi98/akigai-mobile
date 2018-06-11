@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { Http } from '@angular/http';
+import { FeedPage } from '../feed/feed';
+
 
 /**
  * Generated class for the LoginPage page.
@@ -16,14 +19,31 @@ import { HomePage } from '../home/home';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public username: string;
+  public password: string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
   }
 
-  // navToProfile() {
-  //   this.navCtrl.push(ProfilePage, {
-  //     username: this.username
-  //   });
-  // }
+  navToFeed(){
+    this.http.post("http://localhost:3000/login",{
+        username: this.username,
+        password: this.password
+      })
+      .subscribe(
+        result => {
+          console.log(result);
+  
+          this.navCtrl.push(FeedPage,{
+            username:this.username,
+            password:this.password
+          });
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
 
   navHome() {
     this.navCtrl.push(HomePage);
