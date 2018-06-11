@@ -21,6 +21,7 @@ export class RegistrationPage {
       public password:string;
       public firstname:string;
       public lastname:string;
+      public email:string;
     
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
   }
@@ -30,7 +31,8 @@ export class RegistrationPage {
         username: this.username,
         password: this.password,
         firstname:this.firstname,
-        lastname:this.lastname
+        lastname:this.lastname,
+        email:this.email
       })
       .subscribe(
         result => {
@@ -40,7 +42,8 @@ export class RegistrationPage {
             username: this.username,
             password: this.password,
             firstname:this.firstname,
-            lastname:this.lastname
+            lastname:this.lastname,
+            email:this.email
           });
         },
         error => {

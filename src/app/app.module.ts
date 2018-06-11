@@ -9,13 +9,15 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { RegistrationPage } from '../pages/registration/registration';
 import { Http, HttpModule } from '@angular/http';
+import { FeedPage } from '../pages/feed/feed';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LoginPage,
-    RegistrationPage
+    RegistrationPage,
+    FeedPage
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,8 @@ import { Http, HttpModule } from '@angular/http';
     MyApp,
     HomePage,
     LoginPage,
-    RegistrationPage
+    RegistrationPage,
+    FeedPage
   ],
   providers: [
     StatusBar,
