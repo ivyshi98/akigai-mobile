@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { Http } from '@angular/http';
-import { FeedPage } from '../feed/feed';
+//import { FeedPage } from '../feed/feed';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the RegistrationPage page.
@@ -38,7 +39,7 @@ export class RegistrationPage {
         result => {
           console.log(result);
   
-          this.navCtrl.push(FeedPage,{
+          this.navCtrl.push(LoginPage,{
             username: this.username,
             password: this.password,
             firstname:this.firstname,
