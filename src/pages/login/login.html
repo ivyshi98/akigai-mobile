@@ -1,0 +1,28 @@
+<ion-content text-center padding>
+    <h1>Sign In</h1>
+
+    <ion-list>
+        <ion-item>
+            <ion-label stacked>Username</ion-label>
+            <ion-input [(ngModel)]="username" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+                <ion-label stacked>Password</ion-label>
+                <ion-input [(ngModel)]="password"type="Password"></ion-input>
+            </ion-item>
+    </ion-list>
+
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+              <button ion-button round (click)="navTabs()">Sign In</button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+              <button ion-button round (click)="navHome()">Cancel</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+</ion-content>

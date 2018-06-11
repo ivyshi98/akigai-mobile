@@ -1,0 +1,54 @@
+<!--
+  Generated template for the RegistrationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content text-center padding>
+    <h1>Register</h1>
+
+    <ion-list>
+        <ion-item>
+            <ion-label stacked>Username</ion-label>
+            <ion-input [(ngModel)]="username" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>First Name</ion-label>
+            <ion-input [(ngModel)]="firstName" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Last Name</ion-label>
+            <ion-input [(ngModel)]="lastName" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Email</ion-label>
+            <ion-input [(ngModel)]="email" type="email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Password</ion-label>
+            <ion-input [(ngModel)]="password" type="Password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Confirm Password</ion-label>
+            <ion-input type="Password"></ion-input>
+        </ion-item>
+    </ion-list>
+
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+              <button ion-button round (click)="navProfile()">Register</button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+              <button ion-button round (click)="navHome()">Cancel</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+</ion-content>
