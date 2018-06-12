@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { Http } from '@angular/http';
-//import { FeedPage } from '../feed/feed';
 import { LoginPage } from '../login/login';
 
 /**
@@ -22,18 +21,18 @@ export class RegistrationPage {
       public password:string;
       public firstname:string;
       public lastname:string;
-      public email:string;
+      public email: string;
     
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
   }
 
-  navProfile(){
+  register(){
     this.http.post("http://localhost:3000/registration",{
         username: this.username,
         password: this.password,
         firstname:this.firstname,
         lastname:this.lastname,
-        email:this.email
+        email: this.email
       })
       .subscribe(
         result => {
@@ -44,7 +43,7 @@ export class RegistrationPage {
             password: this.password,
             firstname:this.firstname,
             lastname:this.lastname,
-            email:this.email
+            email: this.email
           });
         },
         error => {
