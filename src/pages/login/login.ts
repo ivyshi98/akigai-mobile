@@ -26,17 +26,16 @@ export class LoginPage {
   }
 
   navToFeed(){
-    this.http.post("http://localhost:3000/login",{
+    this.http.post("http://localhost:3000/login", {
         username: this.username,
         password: this.password
       })
       .subscribe(
         result => {
-          console.log(result);
+          console.log(result.json().token);
   
           this.navCtrl.push(FeedPage,{
-            username:this.username,
-            password:this.password
+            token: result.json().token
           });
         },
         error => {

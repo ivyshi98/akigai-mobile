@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the FeedPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Http } from '@angular/http';
+import { Posts } from '../../models/posts';
 
 @IonicPage()
 @Component({
@@ -15,11 +10,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FeedPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public followedPosts: Posts[] = new Array;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
   }
+
+  viewPage() {
+    this.http.get("http://localhost:3000/posts?jwt=" + this.navParams.get("token"), {
+      })
+      .subscribe(
+        result => {
+          console.log(result);
+          this.followedPosts = result.json();
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    };
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FeedPage');
+    this.viewPage();
   }
 
+  
+  
 }
