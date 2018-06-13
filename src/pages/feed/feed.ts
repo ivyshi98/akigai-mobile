@@ -12,6 +12,7 @@ import { MenuController } from 'ionic-angular';
   templateUrl: 'feed.html',
 })
 export class FeedPage {
+  public token: string;
 
 
   public postsProperties: Array<object> = [];
@@ -41,8 +42,10 @@ export class FeedPage {
   
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FeedPage');
-    this.viewPage();
+    //console.log('ionViewDidLoad FeedPage');
+    //this.viewPage();
+    this.token = localStorage.getItem("Token");
+    console.log("profile token: ", this.token);
   }
 
   

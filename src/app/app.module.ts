@@ -18,6 +18,8 @@ import { MenuPageModule } from '../pages/menu/menu.module';
 import { FeedPageModule } from '../pages/feed/feed.module';
 import { CharitylistPageModule } from '../pages/charitylist/charitylist.module';
 import { PortfolioPageModule } from '../pages/portfolio/portfolio.module';
+import { TabsPage } from '../pages/tabs/tabs';
+import { TabsPageModule } from '../pages/tabs/tabs.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,6 @@ import { PortfolioPageModule } from '../pages/portfolio/portfolio.module';
     HomePage,
     LoginPage,
     RegistrationPage,
-
     ProfilePage
   ],
   imports: [
@@ -35,7 +36,8 @@ import { PortfolioPageModule } from '../pages/portfolio/portfolio.module';
     FeedPageModule,
     CharitylistPageModule,
     PortfolioPageModule,
-    MenuPageModule
+    MenuPageModule,
+    TabsPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

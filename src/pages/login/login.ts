@@ -6,6 +6,7 @@ import { FeedPage } from '../feed/feed';
 import { CharitylistPage } from '../charitylist/charitylist';
 import { ProfilePage } from '../profile/profile';
 import { MenuPage } from '../menu/menu';
+import { TabsPage } from '../tabs/tabs';
 
 
 /**
@@ -29,25 +30,21 @@ export class LoginPage {
   }
 
   navToFeed(){
-    this.http.post("http://localhost:3000/login", {
+    this.http.post("http://localhost:3000/login",{
         username: this.username,
         password: this.password
       })
       .subscribe(
         result => {
 
-          console.log(result);
-
-          //var Usertoken = result.json();
-          // localStorage.setItem("Token", Usertoken.token());
-
+          var Usertoken = result.json();
+          localStorage.setItem("Token", Usertoken.token);
           this.navCtrl.setRoot(MenuPage);
           this.navCtrl.popToRoot();
           // this.navCtrl.push(ProfilePage,{
           //   username:this.username,
           //   password:this.password
           // });
-
         },
         error => {
           console.log(error);
@@ -62,7 +59,6 @@ export class LoginPage {
   // navToTabs() {
   //   this.navCtrl.setRoot(TabsPage);
   // }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
