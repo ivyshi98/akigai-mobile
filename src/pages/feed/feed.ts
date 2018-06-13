@@ -10,7 +10,7 @@ import { Posts } from '../../models/posts';
 })
 export class FeedPage {
 
-  public followedPosts: Posts[] = new Array;
+  public postsProperties: Array<object> = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
   }
@@ -21,7 +21,7 @@ export class FeedPage {
       .subscribe(
         result => {
           console.log(result);
-          this.followedPosts = result.json();
+          this.postsProperties = result.json();
         },
         error => {
           console.log(error);
