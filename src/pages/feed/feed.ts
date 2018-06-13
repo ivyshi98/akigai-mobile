@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 
 /**
  * Generated class for the FeedPage page.
@@ -15,9 +16,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FeedPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public menuCtrl:MenuController, public navCtrl: NavController, public navParams: NavParams) {
   }
-
+ 
+  openMenu(){
+    this.menuCtrl.open()
+  }
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad FeedPage');
   }

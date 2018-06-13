@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar>
+        <ion-buttons end>
+            <button ion-button menuToggle icon-only>
+                <ion-icon name='menu'></ion-icon>
+            </button>
+                </ion-buttons>
+                <ion-title>
+                Profile
+                </ion-title>
+        </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  
+        <img class="profile-image" width="37%" height=auto src="../../assets/imgs/profile.png">
+
+        <ion-list>
+        Username
+        <ion-item>
+                {{username}}
+        <!--{{user.username}} -->
+        </ion-item>
+
+        Password
+        <ion-item type = "passowrd">
+                {{password}}
+        <!--{{user.password}} -->
+        </ion-item>
+
+        Payment Information
+        <ion-item>
+     
+          </ion-item>
+
+        </ion-list>
+
+</ion-content>
