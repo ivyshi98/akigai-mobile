@@ -5,7 +5,6 @@ import { Http } from '@angular/http';
 import { Posts } from '../../models/posts';
 import { MenuController } from 'ionic-angular';
 
-
 @IonicPage()
 @Component({
   selector: 'page-feed',
@@ -15,18 +14,18 @@ export class FeedPage {
   public token: string;
 
 
-  public postsProperties: Array<object> = [];
+  public postProperties: Array<object> = [];
 
   constructor(public menuCtrl: MenuController, public navCtrl: NavController, public navParams: NavParams, public http: Http) {
   }
 
   viewPage() {
-    this.http.get("http://localhost:3000/posts?jwt=" + this.navParams.get("token"), {
+    this.http.get("http://localhost:3000/posts?jwt=" + localStorage.getItem("Token"), {
       })
       .subscribe(
         result => {
           console.log(result);
-          this.postsProperties = result.json();
+          this.postProperties = result.json();
         },
         error => {
           console.log(error);
@@ -34,18 +33,16 @@ export class FeedPage {
       );
     };
 
-
- 
   openMenu(){
     this.menuCtrl.open()
   }
   
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad FeedPage');
-    //this.viewPage();
+    console.log('ionViewDidLoad FeedPage');
     this.token = localStorage.getItem("Token");
     console.log("profile token: ", this.token);
+    this.viewPage();
   }
 
   
