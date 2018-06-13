@@ -18,7 +18,7 @@ import { Http } from '@angular/http'
 export class CharitydetailPage {
   
   public charityid: number;
-  public charity:object;
+  public charity:any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -27,10 +27,7 @@ export class CharitydetailPage {
   }
 
 
-  ionViewDidLoad(){
-    console.log("ionViewDidLoad CharitydetailPage");
-   
-  }
+ 
 
   
   getOneCharity() {
@@ -39,7 +36,6 @@ export class CharitydetailPage {
       })
       .subscribe(
         result => {
-          console.log(result.json());
           this.charity = result.json();
           
         },
@@ -55,5 +51,10 @@ export class CharitydetailPage {
 
   navigateToPayment(){
 
+  }
+
+  ionViewDidLoad(){
+    console.log("ionViewDidLoad CharitydetailPage");
+    this.getOneCharity();
   }
 }

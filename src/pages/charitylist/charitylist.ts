@@ -16,16 +16,7 @@ export class CharitylistPage {
       //create instances of charity 
        
     }
-     
-    navigateToCharitydetail(){
-      this.navCtrl.push(CharitydetailPage)
-
-  
     
-    }  
-     navigateToPayment(){
-  
-    } 
 
 
 
@@ -41,6 +32,19 @@ export class CharitylistPage {
           }
         );
       };
+
+    //  navigateToCharitydetail(){
+
+    //  }
+      navigateToCharitydetail(id: number){
+        this.navCtrl.push(CharitydetailPage,{
+          charitydetail:id
+        });
+      }  
+
+       navigateToPayment(){
+    
+      } 
 
     ionViewDidLoad(){
       console.log('ionViewDidLoad CharitylistPage');
