@@ -36,6 +36,10 @@ export class LoginPage {
       .subscribe(
         result => {
           console.log(result);
+
+          //var Usertoken = result.json();
+          // localStorage.setItem("Token", Usertoken.token());
+
           this.navCtrl.setRoot(MenuPage);
           this.navCtrl.popToRoot();
           // this.navCtrl.push(ProfilePage,{

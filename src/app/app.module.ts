@@ -26,8 +26,7 @@ import { PortfolioPageModule } from '../pages/portfolio/portfolio.module';
     LoginPage,
     RegistrationPage,
 
-    ProfilePage,
-    MenuPage
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +34,8 @@ import { PortfolioPageModule } from '../pages/portfolio/portfolio.module';
     HttpModule,
     FeedPageModule,
     CharitylistPageModule,
-    PortfolioPageModule
+    PortfolioPageModule,
+    MenuPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,8 +43,7 @@ import { PortfolioPageModule } from '../pages/portfolio/portfolio.module';
     HomePage,
     LoginPage,
     RegistrationPage,
-    ProfilePage,
-    MenuPage
+    ProfilePage
   ],
   providers: [
     StatusBar,

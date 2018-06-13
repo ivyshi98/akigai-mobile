@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Nav, MenuController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
+import { ProfilePage } from '../profile/profile';
  
 export interface PageInterface {
 
@@ -12,7 +13,6 @@ export interface PageInterface {
   component: any;
   icon: string;
   index?: number;
-  tabName?: string;
   tabComponent?: any;
 }
  
@@ -32,8 +32,15 @@ export class MenuPage {
     { title: 'Feed', pageName: 'TabsPage', component: TabsPage, tabComponent: 'FeedPage', index: 0, icon: 'home' },
     { title: 'Explore Charities', pageName: 'TabsPage', component: TabsPage, tabComponent: 'CharitylistPage', index: 1, icon: 'globe' },
     { title: 'Portfolio', pageName: 'TabsPage', component: TabsPage, tabComponent: 'PortfolioPage', index: 2, icon: 'folder'},
-    { title: 'Logout', pageName: 'HomePage', component: HomePage, icon:'home'}
+    
+    
 
+  ];
+
+  AccountPages: PageInterface[] = [
+    { title: 'Account', pageName: 'ProfilePage', component: ProfilePage, icon:'person'},
+    { title: 'Logout', pageName: 'HomePage', component: HomePage, icon:'home'}
+   
   ];
  
   constructor(public menuCtrl: MenuController, public navCtrl: NavController) { }
