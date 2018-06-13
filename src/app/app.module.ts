@@ -20,6 +20,7 @@ import { CharitylistPageModule } from '../pages/charitylist/charitylist.module';
 import { PortfolioPageModule } from '../pages/portfolio/portfolio.module';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TabsPageModule } from '../pages/tabs/tabs.module';
+import { CharitydetailPage } from '../pages/charitydetail/charitydetail';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { TabsPageModule } from '../pages/tabs/tabs.module';
     HomePage,
     LoginPage,
     RegistrationPage,
-    ProfilePage
+    ProfilePage,
+    CharitydetailPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { TabsPageModule } from '../pages/tabs/tabs.module';
     HomePage,
     LoginPage,
     RegistrationPage,
-    ProfilePage
+    ProfilePage,
+    CharitydetailPage
   ],
   providers: [
     StatusBar,

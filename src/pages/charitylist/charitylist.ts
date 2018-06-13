@@ -1,16 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CharitydetailPage } from '../charitydetail/charitydetail';
-
-
-//import { PaymentPage } from '../payment/payment';
- 
-/**
- * Generated class for the CharitylistPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Http } from '@angular/http';
 
 @IonicPage()
 @Component({
@@ -19,25 +10,43 @@ import { CharitydetailPage } from '../charitydetail/charitydetail';
 })
 export class CharitylistPage {
 
+    public charities: Array<Object> = [];
 
-  /*create a new class for chosen charity */
-
-
-  
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    //create instances of charity 
+    constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+      //create instances of charity 
+       
+    }
      
-  }
-   ionViewDidLoad(){
-     console.log('ionViewDidLoad CharitylistPage');
-   }
-  navigateToProfile(){
+    navigateToCharitydetail(){
+      this.navCtrl.push(CharitydetailPage)
 
   
-  }  
-   navigateToPayment(){
+    
+    }  
+     navigateToPayment(){
+  
+    } 
 
-  } 
+
+
+    getCharities() {
+      this.http.get("http://localhost:3000/allCharities?jwt=" + localStorage.getItem("Token"), {
+        })
+        .subscribe(
+          result => {
+            this.charities = result.json();
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      };
+
+    ionViewDidLoad(){
+      console.log('ionViewDidLoad CharitylistPage');
+      this.getCharities();
+      }
+    }
+  
+
  
-}

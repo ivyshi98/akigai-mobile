@@ -67,6 +67,7 @@ export class MenuPage {
     } else {
       // Tabs are not active, so reset the root page 
       // In this case: moving to or from SpecialPage
+      
       this.nav.parent.setRoot(page.component);
     }
   }

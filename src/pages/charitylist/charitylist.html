@@ -18,14 +18,14 @@
 
       <ion-card ion-item *ngFor="let item of charities">
     
-        <img src="../../assets/imgs/{{item.name}}.png"/>
+        <!-- <img src="../../assets/imgs/{{item.name}}.png"/> -->
     
         <ion-card-content>
           <ion-card-title>
-            {{ item.name }}
+            {{item.name }}
           </ion-card-title>
           <p>
-            {{item.info}}
+            {{item.mission}}
           </p>
         </ion-card-content>
     
@@ -37,13 +37,13 @@
             </button>
           </ion-col>
           <ion-col text-center>
-            <button ion-button (click)="navigateToPayment(item)" clear small icon-start>
+            <button ion-button (click)="navigateToPayment(item.id)" clear small icon-start>
                 <ion-icon name='logo-usd'></ion-icon>
               Donate
             </button>
           </ion-col>
           <ion-col text-right>
-            <button ion-button (click)="navigateToProfile(item)" clear small icon-start>
+            <button ion-button (click)="navigateToCharitydetail(item.id)" clear small icon-start>
               <ion-icon name='share-alt'></ion-icon>
               Details
             </button>
