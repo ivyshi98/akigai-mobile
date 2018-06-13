@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
 import { Http } from '@angular/http';
 import { Posts } from '../../models/posts';
+import { MenuController } from 'ionic-angular';
+
 
 @IonicPage()
 @Component({
@@ -10,9 +13,10 @@ import { Posts } from '../../models/posts';
 })
 export class FeedPage {
 
+
   public postsProperties: Array<object> = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+  constructor(public menuCtrl: MenuController, public navCtrl: NavController, public navParams: NavParams, public http: Http) {
   }
 
   viewPage() {
@@ -28,6 +32,13 @@ export class FeedPage {
         }
       );
     };
+
+
+ 
+  openMenu(){
+    this.menuCtrl.open()
+  }
+  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FeedPage');

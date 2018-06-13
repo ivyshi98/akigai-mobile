@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { Http } from '@angular/http';
 import { FeedPage } from '../feed/feed';
+import { CharitylistPage } from '../charitylist/charitylist';
+import { ProfilePage } from '../profile/profile';
+import { MenuPage } from '../menu/menu';
 
 
 /**
@@ -32,11 +35,19 @@ export class LoginPage {
       })
       .subscribe(
         result => {
-          console.log(result.json().token);
-  
-          this.navCtrl.push(FeedPage,{
-            token: result.json().token
-          });
+
+          console.log(result);
+
+          //var Usertoken = result.json();
+          // localStorage.setItem("Token", Usertoken.token());
+
+          this.navCtrl.setRoot(MenuPage);
+          this.navCtrl.popToRoot();
+          // this.navCtrl.push(ProfilePage,{
+          //   username:this.username,
+          //   password:this.password
+          // });
+
         },
         error => {
           console.log(error);

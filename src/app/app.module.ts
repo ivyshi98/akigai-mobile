@@ -10,6 +10,14 @@ import { LoginPage } from '../pages/login/login';
 import { RegistrationPage } from '../pages/registration/registration';
 import { Http, HttpModule } from '@angular/http';
 import { FeedPage } from '../pages/feed/feed';
+import { ProfilePage } from '../pages/profile/profile';
+import { PortfolioPage } from '../pages/portfolio/portfolio';
+import { CharitylistPage } from '../pages/charitylist/charitylist';
+import { MenuPage } from '../pages/menu/menu';
+import { MenuPageModule } from '../pages/menu/menu.module';
+import { FeedPageModule } from '../pages/feed/feed.module';
+import { CharitylistPageModule } from '../pages/charitylist/charitylist.module';
+import { PortfolioPageModule } from '../pages/portfolio/portfolio.module';
 
 @NgModule({
   declarations: [
@@ -17,12 +25,17 @@ import { FeedPage } from '../pages/feed/feed';
     HomePage,
     LoginPage,
     RegistrationPage,
-    FeedPage
+
+    ProfilePage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
+    FeedPageModule,
+    CharitylistPageModule,
+    PortfolioPageModule,
+    MenuPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -30,7 +43,7 @@ import { FeedPage } from '../pages/feed/feed';
     HomePage,
     LoginPage,
     RegistrationPage,
-    FeedPage
+    ProfilePage
   ],
   providers: [
     StatusBar,

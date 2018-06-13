@@ -13,6 +13,10 @@ export class HomePage {
 
   }
 
+  setRoot(){
+    this.navCtrl.setRoot(HomePage);
+  }
+
   navLogin() {
     this.navCtrl.push(LoginPage);
   }
