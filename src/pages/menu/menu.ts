@@ -38,8 +38,7 @@ export class MenuPage {
   ];
 
   AccountPages: PageInterface[] = [
-    { title: 'Account', pageName: 'ProfilePage', component: ProfilePage, icon:'person'},
-    { title: 'Logout', pageName: 'HomePage', component: HomePage, icon:'home'}
+    { title: 'Account', pageName: 'ProfilePage', component: ProfilePage, icon:'person'}
    
   ];
  
@@ -49,9 +48,13 @@ export class MenuPage {
     this.menuCtrl.open()
   }
 
+
   navigateToLogin(){
-    this.navCtrl.setRoot(LoginPage);
+    
+    this.navCtrl.setRoot(HomePage);
+    localStorage.removeItem('Token');
     this.navCtrl.popToRoot();
+    
   }
   openPage(page: PageInterface) {
     let params = {};
@@ -68,7 +71,8 @@ export class MenuPage {
       // Tabs are not active, so reset the root page 
       // In this case: moving to or from SpecialPage
       
-      this.nav.parent.setRoot(page.component);
+    //this.nav.parent.setRoot(page.component);
+    this.nav.setRoot(page.component);
     }
   }
  

@@ -17,26 +17,25 @@ import { Http } from '@angular/http'
 })
 export class CharitydetailPage {
   
-  public charityid: number;
+
   public charity:any;
+  public charitydetail:any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public http: Http) {
-    this.charityid = this.navParams.get("charitydetail");
+    this.charitydetail = this.navParams.get("charitydetail");
   }
 
 
- 
-
-  
-  getOneCharity() {
+  getCharityDetail(charityid:number) {
     this.http.get("http://localhost:3000/charity/{id}" 
-    + this.charityid, {
+    + charityid, {
       })
       .subscribe(
         result => {
           this.charity = result.json();
+          console.log(this.charity);
           
         },
         error => {
@@ -50,11 +49,12 @@ export class CharitydetailPage {
   }
 
   navigateToPayment(){
+    
 
   }
 
   ionViewDidLoad(){
     console.log("ionViewDidLoad CharitydetailPage");
-    this.getOneCharity();
+    this.getCharityDetail(this.charitydetail);
   }
 }

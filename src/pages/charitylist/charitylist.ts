@@ -12,6 +12,7 @@ import { CharityfilterPage } from '../charityfilter/charityfilter';
 export class CharitylistPage {
 
     public charities: Array<Object> = [];
+    public charity: any;
 
     @ViewChild('scheduleList', { read: List }) charityList: List;
 
@@ -31,7 +32,7 @@ export class CharitylistPage {
        
     }
     
-
+   
 
 
     getCharities() {
@@ -46,10 +47,26 @@ export class CharitylistPage {
           }
         );
       };
+      
+      // navigateToCharitydetail(id: number) {
+      //   this.http.get("http://localhost:3000/charity/{id}" 
+      //   + id, {
+      //     })
+      //     .subscribe(
+      //       result => {
+      //         //this.charity = result.json();
+      //         this.navCtrl.push(CharitydetailPage,{
+      //               charitydetail:result.json(),
+      //             });
+              
+      //       },
+      //       error => {
+      //         console.log(error);
+      //       }
+      //     );
+      //   };
 
-    //  navigateToCharitydetail(){
-
-    //  }
+     
       navigateToCharitydetail(id: number){
         this.navCtrl.push(CharitydetailPage,{
           charitydetail:id
