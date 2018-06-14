@@ -4,11 +4,11 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-segment [(ngModel)]="segment" (ionChange)="updateCharities()">
-      <ion-segment-button value="all">
+    <ion-segment>
+      <ion-segment-button (click)="allCharities()" value="all">
         All
       </ion-segment-button>
-      <ion-segment-button value="favorites">
+      <ion-segment-button (click)="favouriteCharities()" value="favorites">
         Favorites
       </ion-segment-button>
     </ion-segment>
@@ -19,14 +19,14 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-
+<!-- 
   <ion-toolbar no-border-top>
     <ion-searchbar color="primary"
                    [(ngModel)]="queryText"
                    (ionInput)="updateSchedule()"
                    placeholder="Search">
     </ion-searchbar>
-  </ion-toolbar>
+  </ion-toolbar> -->
 </ion-header>
    
     <ion-content padding>
@@ -51,7 +51,7 @@
     
         <ion-row no-padding>
           <ion-col>
-            <button ion-button (click) = "addToFavourite(item)"clear small icon-start>
+            <button ion-button (click) = "addToFavourite(item.id)"clear small icon-start>
               <ion-icon name='star'></ion-icon>
               Favourite
             </button>
