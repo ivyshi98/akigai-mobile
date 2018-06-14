@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
   <ion-header>
       <ion-navbar>
@@ -15,12 +16,10 @@
     <ion-content>
         <ion-card>
             <ion-card-header>
-                Total Donation:
+                Total Donations:
             </ion-card-header>
             <ion-card-content>
-                {{charityarray}}
-                ${{amountarray}}
-                {{amount}}
+                <h2 class="sum">${{this.sum}}</h2>
             </ion-card-content>
           </ion-card>
      
@@ -32,6 +31,27 @@
             <canvas #doughnutCanvas></canvas>
           </ion-card-content>
         </ion-card>
+
+        <ion-card>
+            <ion-card-header>
+              Donation History
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list *ngFor="let donation of userDonations">
+                <ion-item>
+                    <ion-col class="amount">
+                        ${{donation.amount}}
+                    </ion-col>
+                    <ion-col text-wrap>
+                        {{donation.charityName}}
+                    </ion-col>
+                    <ion-col text-wrap class="date">
+                        {{donation.date}}
+                    </ion-col>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
      
     </ion-content>
   
