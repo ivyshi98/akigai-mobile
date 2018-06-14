@@ -118,7 +118,7 @@ export class CharitylistPage {
       );
     };
 
-      
+
 
     ionViewDidLoad(){
       console.log('ionViewDidLoad CharitylistPage');
