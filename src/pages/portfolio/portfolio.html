@@ -1,34 +1,30 @@
-
 <ion-header>
-    <ion-navbar>
-        <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>Portfolio</ion-title>
-    </ion-navbar>
-  </ion-header>
-   
-     
-    <ion-content>
-        <ion-card>
-            <ion-card-header>
-                Total Donation:
-            </ion-card-header>
-            <ion-card-content>
-                {{charityarray}}
-                ${{amountarray}}
-                {{amount}}
-            </ion-card-content>
-          </ion-card>
-     
-        <ion-card>
-          <ion-card-header>
-            Donation Breakdown
-          </ion-card-header>
-          <ion-card-content>
-            <canvas #doughnutCanvas></canvas>
-          </ion-card-content>
-        </ion-card>
-     
-    </ion-content>
-  
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Portfolio</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      Total Donation:
+    </ion-card-header>
+    <ion-card-content>
+      {{charityarray}} ${{amountarray}} {{amount}}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Donation Breakdown
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #doughnutCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
