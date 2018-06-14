@@ -82,7 +82,8 @@ export class CharitylistPage {
 
       }
 
-      addToFavourite(){
+      addToFavourite(id:number){
+        //this.http.post{}
 
       }
 
