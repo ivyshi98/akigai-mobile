@@ -1,16 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ModalController, List } from 'ionic-angular';
 import { CharitydetailPage } from '../charitydetail/charitydetail';
-
-
-//import { PaymentPage } from '../payment/payment';
- 
-/**
- * Generated class for the CharitylistPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Http } from '@angular/http';
+import { CharityfilterPage } from '../charityfilter/charityfilter';
 
 @IonicPage()
 @Component({
@@ -19,25 +11,104 @@ import { CharitydetailPage } from '../charitydetail/charitydetail';
 })
 export class CharitylistPage {
 
+    public charities: Array<Object> = [];
+    public charity: any;
 
-  /*create a new class for chosen charity */
+    @ViewChild('scheduleList', { read: List }) charityList: List;
+
+  dayIndex = 0;
+  queryText = '';
+  segment = 'all';
+  excludeTracks: any = [];
+  shownSessions: any = [];
+  groups: any = [];
+  confDate: string;
+
+    constructor(public navCtrl: NavController, 
+      public navParams: NavParams, 
+      public http: Http,
+      public modalCtrl: ModalController) {
+      //create instances of charity 
+       
+    }
+    
+   
 
 
-  
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    //create instances of charity 
+    getCharities() {
+      this.http.get("http://localhost:3000/allCharities?jwt=" + localStorage.getItem("Token"), {
+        })
+        .subscribe(
+          result => {
+            this.charities = result.json();
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      };
+      
+      // navigateToCharitydetail(id: number) {
+      //   this.http.get("http://localhost:3000/charity/{id}" 
+      //   + id, {
+      //     })
+      //     .subscribe(
+      //       result => {
+      //         //this.charity = result.json();
+      //         this.navCtrl.push(CharitydetailPage,{
+      //               charitydetail:result.json(),
+      //             });
+              
+      //       },
+      //       error => {
+      //         console.log(error);
+      //       }
+      //     );
+      //   };
+
      
-  }
-   ionViewDidLoad(){
-     console.log('ionViewDidLoad CharitylistPage');
-   }
-  navigateToProfile(){
+      navigateToCharitydetail(id: number){
+        this.navCtrl.push(CharitydetailPage,{
+          charitydetail:id
+        });
+      }  
 
+       navigateToPayment(){
+    
+      } 
+
+      //top bar 
+
+      updateCharities(){
+
+      }
+
+      presentFilter() {
+        let modal = this.modalCtrl.create(CharityfilterPage, this.excludeTracks);
+        modal.present();
+    
+        modal.onWillDismiss((data: any[]) => {
+          if (data) {
+            this.excludeTracks = data;
+            this.updateList();
+          }
+        });
+    
+      }
+
+      updateList(){
+
+      }
+
+      addToFavourite(){
+
+      }
+
+    ionViewDidLoad(){
+      console.log('ionViewDidLoad CharitylistPage');
+      this.getCharities();
+      }
+    }
   
-  }  
-   navigateToPayment(){
 
-  } 
  
-}

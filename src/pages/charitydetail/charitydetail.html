@@ -2,18 +2,18 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{charitydetail.name}}</ion-title>
+    <ion-title>{{charity.name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
   
   <ion-content padding>
-    <div class = "profileimg">
+    <!-- <div class = "profileimg">
       <ion-img height= "150px" width = "150px" src={{charitydetail.logo}}></ion-img>
-    </div>
+    </div> -->
   
       <p class = "info">
-         {{charitydetail.info}}
+         {{charity.id}}
          <br>
          <br>
          <button ion-button (click)= "navigateToPayment()" color = "danger">Donate</button>
