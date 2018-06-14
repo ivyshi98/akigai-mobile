@@ -38,7 +38,7 @@
 
       <ion-card ion-item *ngFor="let item of charities">
     
-        <!-- <img src="../../assets/imgs/{{item.name}}.png"/> -->
+         <img src="../../assets/imgs/{{item.name}}.png"/> 
     
         <ion-card-content>
           <ion-card-title>
@@ -51,9 +51,9 @@
     
         <ion-row no-padding>
           <ion-col>
-            <button ion-button clear small icon-start>
+            <button ion-button (click) = "addToFavourite(item)"clear small icon-start>
               <ion-icon name='star'></ion-icon>
-              Save
+              Favourite
             </button>
           </ion-col>
           <ion-col text-center>

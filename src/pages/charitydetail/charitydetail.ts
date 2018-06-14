@@ -29,14 +29,12 @@ export class CharitydetailPage {
 
 
   getCharityDetail(charityid:number) {
-    this.http.get("http://localhost:3000/charity/{id}" 
+    this.http.get("http://localhost:3000/charity/" 
     + charityid, {
       })
       .subscribe(
         result => {
-          this.charity = result.json();
-          console.log(this.charity);
-          
+          this.charity = result.json();         
         },
         error => {
           console.log(error);
