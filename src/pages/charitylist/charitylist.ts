@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController, List } from 'ioni
 import { CharitydetailPage } from '../charitydetail/charitydetail';
 import { Http } from '@angular/http';
 import { CharityfilterPage } from '../charityfilter/charityfilter';
+import { PaymentMethodsPage } from '../payment-methods/payment-methods';
 
 @IonicPage()
 @Component({
@@ -82,7 +83,7 @@ export class CharitylistPage {
       }  
 
        navigateToPayment(){
-        // this.navCtrl.push(PaymentPage);
+        this.navCtrl.push(PaymentMethodsPage);
     
       } 
 

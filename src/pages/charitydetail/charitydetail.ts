@@ -49,7 +49,7 @@ export class CharitydetailPage {
 
   navigateToPayment(id: number){
     this.navCtrl.push(PaymentMethodsPage);
-    charityId: id;
+    //charityId: id;
   }
 
   ionViewDidLoad(){
