@@ -47,25 +47,6 @@ export class CharitylistPage {
           }
         );
       };
-      
-      // navigateToCharitydetail(id: number) {
-      //   this.http.get("http://localhost:3000/charity/{id}" 
-      //   + id, {
-      //     })
-      //     .subscribe(
-      //       result => {
-      //         //this.charity = result.json();
-      //         this.navCtrl.push(CharitydetailPage,{
-      //               charitydetail:result.json(),
-      //             });
-              
-      //       },
-      //       error => {
-      //         console.log(error);
-      //       }
-      //     );
-      //   };
-
      
       navigateToCharitydetail(id: number){
         this.navCtrl.push(CharitydetailPage,{
@@ -74,6 +55,7 @@ export class CharitylistPage {
       }  
 
        navigateToPayment(){
+        // this.navCtrl.push(PaymentPage);
     
       } 
 

@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{charity.name}}</ion-title>
+    <ion-title>{{charity?.name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -13,13 +13,12 @@
     </div> -->
   
       <p class = "info">
-         {{charity.id}}
+         {{charity?.mission}}
          <br>
-         <br>
-         <button ion-button (click)= "navigateToPayment()" color = "danger">Donate</button>
       </p>
   
     <p class = "topbar">
+        <button ion-button (click)= "navigateToPayment()" color = "danger">Donate</button>
       <button ion-button color="light" icon-start>
         <ion-icon name='arrow-back'></ion-icon>
         Back
@@ -30,10 +29,10 @@
         <ion-icon name='arrow-forward'></ion-icon>
       </button>
   
-      <button ion-button click = "addToButton()" color="light" icon-only>
+      <!-- <button ion-button click = "addToButton()" color="light" icon-only>
           <ion-icon name="star"></ion-icon>
           Save
-        </button>
+        </button> -->
     </p>
     
   </ion-content>
