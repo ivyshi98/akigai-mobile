@@ -1,3 +1,38 @@
 page-home {
+    .content {
+        background-color: map-get($colors, sky);
+        z-index: 1;
+    }
 
+    .title {
+        margin-top: 20px;
+        margin-bottom: 60px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 200px;
+    }
+
+    .appname {
+        font-family: 'Grand Hotel', cursive;
+        font-size: 70px;
+        color: white;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .giraffe {
+        height: 200px;
+        object-position: 50% 50%;
+        margin: auto;
+        display: block;
+        margin-top: 10vw;
+    }
+
+    .grass {
+        height: 200px;
+        width: 100vw; 
+        display: block; 
+        margin: auto;
+        margin-left: -10px;
+        margin-top: -40vw;
+    }
 }
