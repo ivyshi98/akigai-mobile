@@ -82,10 +82,21 @@ export class CharitylistPage {
 
       }
 
-      addToFavourite(id:number){
-        //this.http.post{}
+    //   addToFavourite(charityid:number,userid:number){
+    //    this.http.post("http://localhost:3000/addUserFavourites" + charityid + userid,{
 
-      }
+    //    })
+    //    .subscribe(
+    //     result => {
+    //       this.charities = result.json();
+    //     },
+    //     error => {
+    //       console.log(error);
+    //     }
+    //   );
+    // };
+
+      
 
     ionViewDidLoad(){
       console.log('ionViewDidLoad CharitylistPage');
