@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http'
+import { PaymentMethodsPage } from '../payment-methods/payment-methods';
 
 
 /**
@@ -46,9 +47,9 @@ export class CharitydetailPage {
   backToCharitylist(){
   }
 
-  navigateToPayment(){
-    
-
+  navigateToPayment(id: number){
+    this.navCtrl.push(PaymentMethodsPage);
+    charityId: id;
   }
 
   ionViewDidLoad(){

@@ -1,0 +1,60 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Payment</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <form action="/" method="post" id="payment-form">
+    <div class="form-row">
+      <div id="card-element"></div>
+
+      <!-- Used to display Element errors -->
+      <div id="card-errors" role="alert"></div>
+    </div>
+  </form>
+
+  <ion-item>
+    <ion-label stacked>Amount</ion-label>
+    <ion-input [(ngModel)]="amount" type="number"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Card Holder</ion-label>
+    <ion-input [(ngModel)]="card_holder" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Billing Address</ion-label>
+    <ion-input [(ngModel)]="billingaddress" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>City</ion-label>
+    <ion-input [(ngModel)]="city" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Country</ion-label>
+    <ion-input [(ngModel)]="country" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Postal Code</ion-label>
+    <ion-input [(ngModel)]="postalcode" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>State/Province</ion-label>
+    <ion-input [(ngModel)]="stateprovince" type="text"></ion-input>
+  </ion-item>
+
+  <form action="/" method="post" id="payment-form">
+    <button ion-button block>Donate Once</button>
+  </form>
+
+</ion-content>
