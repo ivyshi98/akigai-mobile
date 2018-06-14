@@ -22,6 +22,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { TabsPageModule } from '../pages/tabs/tabs.module';
 import { CharitydetailPage } from '../pages/charitydetail/charitydetail';
 import { CharityfilterPage } from '../pages/charityfilter/charityfilter';
+import { PaymentMethodsPage } from '../pages/payment-methods/payment-methods';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { CharityfilterPage } from '../pages/charityfilter/charityfilter';
     RegistrationPage,
     ProfilePage,
     CharitydetailPage,
-    CharityfilterPage
+    CharityfilterPage,
+    PaymentMethodsPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { CharityfilterPage } from '../pages/charityfilter/charityfilter';
     RegistrationPage,
     ProfilePage,
     CharitydetailPage,
-    CharityfilterPage
+    CharityfilterPage,
+    PaymentMethodsPage
   ],
   providers: [
     StatusBar,
