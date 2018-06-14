@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { PortfolioPage } from '../portfolio/portfolio';
+import { TabsPage } from '../tabs/tabs';
 
 declare var Stripe;
 
@@ -90,7 +91,7 @@ export class PaymentMethodsPage {
           } else {
             console.log(result.token);
             this.stripeTokenHandler(result.token);
-            this.navCtrl.push(PortfolioPage);
+            this.navCtrl.setRoot(PortfolioPage);
             this.donationSuccessful();
           }
         })
