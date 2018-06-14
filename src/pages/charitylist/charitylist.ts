@@ -13,6 +13,7 @@ export class CharitylistPage {
 
     public charities: Array<Object> = [];
     public charity: any;
+    public favouriteCharity: any;
 
     @ViewChild('scheduleList', { read: List }) charityList: List;
 
@@ -47,6 +48,32 @@ export class CharitylistPage {
           }
         );
       };
+
+      allCharities(){
+        this.http.get("http://localhost:3000/allCharities?jwt=" + localStorage.getItem("Token"), {
+        })
+        .subscribe(
+          result => {
+            this.charities = result.json();
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      }
+
+      favouriteCharities(){
+        this.http.get("http://localhost:3000/favourite?jwt=" + localStorage.getItem("Token"), {
+        })
+        .subscribe(
+          result => {
+            this.charities = result.json();
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      }
      
       navigateToCharitydetail(id: number){
         this.navCtrl.push(CharitydetailPage,{
@@ -59,11 +86,6 @@ export class CharitylistPage {
     
       } 
 
-      //top bar 
-
-      updateCharities(){
-
-      }
 
       presentFilter() {
         let modal = this.modalCtrl.create(CharityfilterPage, this.excludeTracks);
@@ -82,10 +104,21 @@ export class CharitylistPage {
 
       }
 
-      addToFavourite(id:number){
-        //this.http.post{}
+      addToFavourite(charityid:number){
+       this.http.post("http://localhost:3000/favourite/" + charityid + "?jwt=" + localStorage.getItem("Token") ,{
 
-      }
+       })
+       .subscribe(
+        result => {
+          console.log(result);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    };
+
+
 
     ionViewDidLoad(){
       console.log('ionViewDidLoad CharitylistPage');
