@@ -1,3 +1,24 @@
 page-registration {
+    .bigButton {
+        background-color: map-get($colors, orange);
+        color: white;
+        width: 200px;
+        height: 70px;
+        margin: 0 auto;
+        display: block;
+    }
 
+    .title {
+        margin-left: 40px;
+        font-family: 'Raleway', sans-serif;
+        font-size: 60px;
+
+    }
+
+    .list {
+        margin-top: 50px;
+        width: 80%;
+        display: block;
+        margin: 50px auto;
+    }
 }

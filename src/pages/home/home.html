@@ -1,16 +1,26 @@
-<ion-content text-center color='orange' padding>
-  <h1>Charity App</h1>
+<link href="https://fonts.googleapis.com/css?family=Grand+Hotel" rel="stylesheet">
 
+<ion-content text-center color='orange' padding>
+  <div class="title">
+    <h1 class="appname">Charity <br>App</h1>
+  </div>
+  
   <ion-grid>
       <ion-row>
         <ion-col>
-            <button ion-button round (click)="navLogin()">Sign in</button>
+            <button class="bigButton" ion-button round (click)="navLogin()">SIGN IN</button>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-            <button ion-button round (click)="navRegistration()">Register</button>
+            <button class="bigButton" ion-button round (click)="navRegistration()">REGISTER</button>
         </ion-col>
       </ion-row>
     </ion-grid>
+    <div class="giraffe">
+      <img  src="assets/imgs/giraffe.jpg">
+    </div>
+    <div class="grass">
+      <img  src="assets/imgs/grass.svg">
+    </div>
 </ion-content>
