@@ -115,6 +115,7 @@ export class CharitylistPage {
           }]
         });
         // now present the alert on top of all other content
+        //
         alert.present();
 
        this.http.post("http://localhost:3000/favourite?charityId="+ charityid + "&jwt=" + localStorage.getItem("Token") ,{
@@ -130,7 +131,6 @@ export class CharitylistPage {
         }
       );
     };
-
 
 
     ionViewDidLoad(){
