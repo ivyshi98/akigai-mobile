@@ -117,7 +117,7 @@ export class CharitylistPage {
         // now present the alert on top of all other content
         alert.present();
 
-       this.http.post("http://localhost:3000/favourite/" + charityid + "?jwt=" + localStorage.getItem("Token") ,{
+       this.http.post("http://localhost:3000/favourite?charityId="+ charityid + "&jwt=" + localStorage.getItem("Token") ,{
 
        })
        .subscribe(
