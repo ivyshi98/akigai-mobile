@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, List } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, List, AlertController } from 'ionic-angular';
 import { CharitydetailPage } from '../charitydetail/charitydetail';
 import { Http } from '@angular/http';
 import { CharityfilterPage } from '../charityfilter/charityfilter';
@@ -29,7 +29,8 @@ export class CharitylistPage {
     constructor(public navCtrl: NavController, 
       public navParams: NavParams, 
       public http: Http,
-      public modalCtrl: ModalController) {
+      public modalCtrl: ModalController,
+      public alertCtrl: AlertController) {
       //create instances of charity 
        
     }
@@ -106,12 +107,23 @@ export class CharitylistPage {
       }
 
       addToFavourite(charityid:number){
+        //show alert
+        let alert = this.alertCtrl.create({
+          title: 'Favorite Added',
+          buttons: [{
+            text: 'OK',
+          }]
+        });
+        // now present the alert on top of all other content
+        alert.present();
+
        this.http.post("http://localhost:3000/favourite/" + charityid + "?jwt=" + localStorage.getItem("Token") ,{
 
        })
        .subscribe(
         result => {
           console.log(result);
+           // create an alert instance
         },
         error => {
           console.log(error);
