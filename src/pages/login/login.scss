@@ -21,4 +21,19 @@ page-login {
         display: block;
         margin: 50px auto;
     }
+
+    .tiger {
+        margin-right: -20px;
+        margin-top: 80px;
+        transform: scale(.5);
+    }
+
+    .grass {
+        height: 200px;
+        width: 100vw; 
+        display: block; 
+        text-align: center;
+        margin: auto;
+        margin-top: -68vw;
+    }
 }
