@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http'
 import { PaymentMethodsPage } from '../payment-methods/payment-methods';
+import { CharitylistPage } from '../charitylist/charitylist';
 
 
 /**
@@ -21,6 +22,7 @@ export class CharitydetailPage {
 
   public charity:any;
   public charitydetail:any;
+  public nextId:any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -28,6 +30,29 @@ export class CharitydetailPage {
     this.charitydetail = this.navParams.get("charitydetail");
   }
 
+  
+  navigateToNext(currentCharityId:number){
+    this.navCtrl.setRoot(CharitylistPage);
+    this.navCtrl.push(CharitydetailPage,{
+      charitydetail:currentCharityId+1,
+    })
+  }
+
+  navigateToPrevious(currentCharityId:number){
+    this.navCtrl.setRoot(CharitylistPage);
+    if (currentCharityId >1 ){
+      
+      this.navCtrl.push(CharitydetailPage,{
+        //if statement for id > 1
+        charitydetail:currentCharityId-1,
+      })
+    }else if (currentCharityId == 1){
+      this.navCtrl.push(CharitydetailPage,{
+        //if statement for id > 1
+        charitydetail:currentCharityId,
+      })
+    }
+  }
 
   getCharityDetail(charityid:number) {
     this.http.get("http://localhost:3000/charity/" 
