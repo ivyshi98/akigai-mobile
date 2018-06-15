@@ -1,13 +1,33 @@
 <ion-header>
-    <ion-navbar>
-      <ion-buttons start>
-        <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
+  <ion-navbar no-border-bottom>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-segment>
+      <ion-segment-button (click)="allCharities()" value="all">
+        All
+      </ion-segment-button>
+      <ion-segment-button (click)="favouriteCharities()" value="favorites">
+        Favorites
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentFilter()">
+        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
       </button>
-      </ion-buttons>
-      <ion-title>Explore Charities</ion-title>
-    </ion-navbar>
-  </ion-header>
+    </ion-buttons>
+  </ion-navbar>
+<!-- 
+  <ion-toolbar no-border-top>
+    <ion-searchbar color="primary"
+                   [(ngModel)]="queryText"
+                   (ionInput)="updateSchedule()"
+                   placeholder="Search">
+    </ion-searchbar>
+  </ion-toolbar> -->
+</ion-header>
    
     <ion-content padding>
     <!--
@@ -18,32 +38,32 @@
 
       <ion-card ion-item *ngFor="let item of charities">
     
-        <img src="../../assets/imgs/{{item.name}}.png"/>
+         <img src="../../assets/imgs/{{item.name}}.png"/> 
     
         <ion-card-content>
           <ion-card-title>
-            {{ item.name }}
+            {{item.name }}
           </ion-card-title>
           <p>
-            {{item.info}}
+            {{item.mission}}
           </p>
         </ion-card-content>
     
         <ion-row no-padding>
           <ion-col>
-            <button ion-button clear small icon-start>
+            <button ion-button (click) = "addToFavourite(item.id)"clear small icon-start>
               <ion-icon name='star'></ion-icon>
-              Save
+              Favourite
             </button>
           </ion-col>
           <ion-col text-center>
-            <button ion-button (click)="navigateToPayment(item)" clear small icon-start>
+            <button ion-button (click)="navigateToPayment(item.id)" clear small icon-start>
                 <ion-icon name='logo-usd'></ion-icon>
               Donate
             </button>
           </ion-col>
           <ion-col text-right>
-            <button ion-button (click)="navigateToProfile(item)" clear small icon-start>
+            <button ion-button (click)="navigateToCharitydetail(item.id)" clear small icon-start>
               <ion-icon name='share-alt'></ion-icon>
               Details
             </button>

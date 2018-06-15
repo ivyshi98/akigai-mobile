@@ -2,38 +2,38 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{charitydetail.name}}</ion-title>
+    <ion-title>{{charity?.name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
   
   <ion-content padding>
     <div class = "profileimg">
-      <ion-img height= "150px" width = "150px" src={{charitydetail.logo}}></ion-img>
+      <ion-img height= "150px" width = "150px" src="../../assets/imgs/{{charity?.name}}.png"></ion-img>
     </div>
   
       <p class = "info">
-         {{charitydetail.info}}
+         {{charity?.mission}}
          <br>
-         <br>
-         <button ion-button (click)= "navigateToPayment()" color = "danger">Donate</button>
       </p>
   
     <p class = "topbar">
-      <button ion-button color="light" icon-start>
+        <button ion-button (click)= "navigateToPayment(charity.id)" color = "danger">Donate</button>
+      
+        <button ion-button (click) = "navigateToPrevious(charity.id)" color="light" icon-start>
         <ion-icon name='arrow-back'></ion-icon>
-        Back
+        Previous
       </button>
   
-      <button ion-button (click) = "navigateToNext()" color="light" icon-end>
+      <button ion-button (click) = "navigateToNext(charity.id)" color="light" icon-end>
         Next
         <ion-icon name='arrow-forward'></ion-icon>
       </button>
   
-      <button ion-button click = "addToButton()" color="light" icon-only>
+      <!-- <button ion-button click = "addToButton()" color="light" icon-only>
           <ion-icon name="star"></ion-icon>
           Save
-        </button>
+        </button> -->
     </p>
     
   </ion-content>
