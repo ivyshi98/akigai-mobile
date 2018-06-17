@@ -11,11 +11,11 @@
   <ion-list radio-group [(ngModel)]="frequency">
     <ion-item>
       <ion-label>One Time</ion-label>
-      <ion-radio value="oneTime" checked='true'></ion-radio>
+      <ion-radio value="oneTime" (click)="oneTimeTrue()"></ion-radio>
     </ion-item>
     <ion-item>
       <ion-label>Monthly</ion-label>
-      <ion-radio value="monthly"></ion-radio>
+      <ion-radio value="monthly" (click)="monthlyTrue()"></ion-radio>
     </ion-item>
   </ion-list>
 

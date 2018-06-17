@@ -17,6 +17,7 @@ export class PaymentMethodsPage {
   amount: number;
   userId: number;
   oneTime: boolean;
+  monthly: boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -27,6 +28,16 @@ export class PaymentMethodsPage {
 
   ionViewDidLoad() {
     this.setupStripe();
+  }
+
+  oneTimeTrue() {
+    this.oneTime = true;
+    this.monthly = false;
+  }
+
+  monthlyTrue() {
+    this.oneTime = false;
+    this.monthly = true;
   }
 
   setupStripe() {
