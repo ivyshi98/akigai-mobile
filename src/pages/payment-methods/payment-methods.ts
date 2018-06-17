@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { PortfolioPage } from '../portfolio/portfolio';
-import { TabsPage } from '../tabs/tabs';
 
 declare var Stripe;
 
@@ -14,8 +13,10 @@ export class PaymentMethodsPage {
 
   stripe = Stripe('pk_test_9xDCoJstNY3XTH470KJmBNzU');
   card: any;
-  card_holder: string;
+  cardholder: string;
   amount: number;
+  userId: number;
+  oneTime: boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -26,25 +27,6 @@ export class PaymentMethodsPage {
 
   ionViewDidLoad() {
     this.setupStripe();
-  }
-
-  stripeTokenHandler(token) {
-    this.http
-      .post("http://localhost:3000/payment", {
-        card_holder: this.card_holder,
-        payment_token: token.id,
-        amount: this.amount,
-        //user_id: localStorage.getItem("TOKEN")
-      })
-
-      .subscribe(
-        result => {
-          console.log(result);
-        },
-
-        error => {
-          console.log(error);
-        });
   }
 
   setupStripe() {
@@ -83,19 +65,90 @@ export class PaymentMethodsPage {
       event.preventDefault();
 
       // this.stripe.createToken(this.card) this.stripe.createSource(this.card)
-      this.stripe.createToken(this.card)
-        .then(result => {
-          if (result.error) {
-            var errorElement = document.getElementById('card-errors');
-            errorElement.textContent = result.error.message;
-          } else {
-            console.log(result.token);
-            this.stripeTokenHandler(result.token);
-            this.navCtrl.setRoot(PortfolioPage);
-            this.donationSuccessful();
-          }
-        })
+      if (this.oneTime == true) {
+        this.stripe.createToken(this.card)
+          .then(result => {
+            if (result.error) {
+              var errorElement = document.getElementById('card-errors');
+              errorElement.textContent = result.error.message;
+            } else {
+              console.log(result.token);
+              this.stripeTokenHandler(result.token);
+              this.navCtrl.push(PortfolioPage);
+              this.donationSuccessful();
+            }
+          })
+      } else {
+        // var ownerInfo = {
+        //   owner: {
+        //     name: this.name,
+        //     address: {
+        //       line1: this.address_line1,
+        //       city: this.address_city,
+        //       postal_code: this.address_zip,
+        //       country: this.address_country,
+        //     },
+        //     //email: 'jenny.rosen@example.com'
+        //   },
+        // };
+
+        this.stripe.createSource(this.card)
+          .then(result => {
+            if (result.error) {
+              // Inform the user if there was an error
+              var errorElement = document.getElementById('card-errors');
+              errorElement.textContent = result.error.message;
+            } else {
+              // Send the source to your server
+              this.stripeSourceHandler(result.source);
+              this.navCtrl.push(PortfolioPage);
+              this.donationSuccessful();
+            }
+          });
+      }
     });
+  }
+
+  stripeTokenHandler(token) {
+    this.http
+      .post("http://localhost:3000/payment", {
+        cardholder: this.cardholder,
+        payment_token: token.id,
+        amount: this.amount,
+        date: new Date().toDateString(),
+        time: new Date().toTimeString(),
+        //user_id: localStorage.getItem("TOKEN")
+      })
+
+      .subscribe(
+        result => {
+          console.log(result);
+        },
+
+        error => {
+          console.log(error);
+        });
+  }
+
+  stripeSourceHandler(source) {
+    this.http
+      .post("http://localhost:3000/payment", {
+        cardholder: this.cardholder,
+        payment_token: source.id,
+        amount: this.amount,
+        date: new Date().toDateString(),
+        time: new Date().toTimeString(),
+        //user_id: localStorage.getItem("TOKEN")
+      })
+
+      .subscribe(
+        result => {
+          console.log(result);
+        },
+
+        error => {
+          console.log(error);
+        });
   }
 
   donationSuccessful() {

@@ -8,8 +8,16 @@
 
 
 <ion-content>
-
-  
+  <ion-list radio-group [(ngModel)]="frequency">
+    <ion-item>
+      <ion-label>One Time</ion-label>
+      <ion-radio value="oneTime" checked='true'></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Monthly</ion-label>
+      <ion-radio value="monthly"></ion-radio>
+    </ion-item>
+  </ion-list>
 
   <ion-item>
     <ion-label stacked>Amount</ion-label>
@@ -18,7 +26,7 @@
 
   <ion-item>
     <ion-label stacked>Card Holder</ion-label>
-    <ion-input [(ngModel)]="card_holder" type="text"></ion-input>
+    <ion-input [(ngModel)]="cardholder" type="text"></ion-input>
   </ion-item>
 
   <ion-item>
