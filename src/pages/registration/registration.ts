@@ -53,7 +53,8 @@ export class RegistrationPage {
   }
 
   navHome() {
-    this.navCtrl.push(HomePage);
+    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.popToRoot();
   }
 
   ionViewDidLoad() {

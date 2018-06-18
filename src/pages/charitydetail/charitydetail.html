@@ -18,14 +18,14 @@
       </p>
   
     <p class = "topbar">
-        <button ion-button (click)= "navigateToPayment(charity.id)" color = "danger">Donate</button>
+        <button ion-button round (click)= "navigateToPayment(charity.id)" color = "danger">Donate</button>
       
-        <button ion-button (click) = "navigateToPrevious(charity.id)" color="light" icon-start>
+        <button ion-button round (click) = "navigateToPrevious(charity.id)" color="light" icon-start>
         <ion-icon name='arrow-back'></ion-icon>
         Previous
       </button>
   
-      <button ion-button (click) = "navigateToNext(charity.id)" color="light" icon-end>
+      <button ion-button round (click) = "navigateToNext(charity.id)" color="light" icon-end>
         Next
         <ion-icon name='arrow-forward'></ion-icon>
       </button>

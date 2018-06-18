@@ -29,8 +29,8 @@ export class MenuPage {
   @ViewChild(Nav) nav: Nav;
  
   pages: PageInterface[] = [
-    { title: 'Feed', pageName: 'TabsPage', component: TabsPage, tabComponent: 'FeedPage', index: 0, icon: 'home' },
     { title: 'Explore Charities', pageName: 'TabsPage', component: TabsPage, tabComponent: 'CharitylistPage', index: 1, icon: 'globe' },
+    { title: 'Feed', pageName: 'TabsPage', component: TabsPage, tabComponent: 'FeedPage', index: 0, icon: 'home' },
     { title: 'Portfolio', pageName: 'TabsPage', component: TabsPage, tabComponent: 'PortfolioPage', index: 2, icon: 'folder'},
     
     

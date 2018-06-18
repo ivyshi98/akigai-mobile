@@ -7,9 +7,8 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
   templateUrl: 'tabs.html',
 })
 export class TabsPage {
- 
-  FeedRoot: any = 'FeedPage';
   CharitylistRoot: any = 'CharitylistPage';
+  FeedRoot: any = 'FeedPage';
   PortfolioRoot: any = 'PortfolioPage';
   myIndex: number;
 
