@@ -26,43 +26,60 @@
 
   <ion-item>
     <ion-label stacked>Card Holder</ion-label>
-    <ion-input [(ngModel)]="cardholder" type="text"></ion-input>
+    <ion-input [(ngModel)]="name" type="text"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label stacked>Billing Address</ion-label>
-    <ion-input [(ngModel)]="billingaddress" type="text"></ion-input>
+    <ion-label stacked>Billing Address Line 1</ion-label>
+    <ion-input [(ngModel)]="address_line1" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Billing Address Line 2</ion-label>
+    <ion-input [(ngModel)]="address_line2" type="text"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label stacked>City</ion-label>
-    <ion-input [(ngModel)]="city" type="text"></ion-input>
+    <ion-input [(ngModel)]="address_city" type="text"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label stacked>Country</ion-label>
-    <ion-input [(ngModel)]="country" type="text"></ion-input>
+    <ion-input [(ngModel)]="address_country" type="text"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label stacked>Postal Code</ion-label>
-    <ion-input [(ngModel)]="postalcode" type="text"></ion-input>
+    <ion-input [(ngModel)]="address_zip" type="text"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label stacked>State/Province</ion-label>
-    <ion-input [(ngModel)]="stateprovince" type="text"></ion-input>
+    <ion-input [(ngModel)]="address_state" type="text"></ion-input>
   </ion-item>
+
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Curncy</ion-label>
+      <ion-select [(ngModel)]="curency">
+        <ion-option value="usd">USD</ion-option>
+        <ion-option value="cad">CAD</ion-option>
+        <ion-option value="gbp">GBP</ion-option>
+        <ion-option value="eur">EUR</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
 
   <form action="/" method="post" id="payment-form">
     <div class="form-row">
-        <div id="card-element"></div>
-  
-        <!-- Used to display Element errors -->
-        <div id="card-errors" role="alert"></div>
-      </div>
+      <div id="card-element"></div>
 
-    <button ion-button block>Donate Once</button>
+      <!-- Used to display Element errors -->
+      <div id="card-errors" role="alert"></div>
+    </div>
+    <button ion-button block>Donate</button>
   </form>
 
 </ion-content>

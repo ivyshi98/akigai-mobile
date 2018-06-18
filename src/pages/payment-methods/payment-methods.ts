@@ -13,9 +13,13 @@ export class PaymentMethodsPage {
 
   stripe = Stripe('pk_test_9xDCoJstNY3XTH470KJmBNzU');
   card: any;
-  cardholder: string;
+  name: string;
+  address_line1: string;
+  address_city: string;
+  address_country: string;
+  address_zip: string;
   amount: number;
-  userId: number;
+  curency: string;
   oneTime: boolean;
   monthly: boolean;
 
@@ -76,7 +80,7 @@ export class PaymentMethodsPage {
       event.preventDefault();
 
       // this.stripe.createToken(this.card) this.stripe.createSource(this.card)
-      if (this.oneTime == true) {
+      if (this.oneTime) {
         this.stripe.createToken(this.card)
           .then(result => {
             if (result.error) {
@@ -123,12 +127,13 @@ export class PaymentMethodsPage {
   stripeTokenHandler(token) {
     this.http
       .post("http://localhost:3000/payment", {
-        cardholder: this.cardholder,
-        payment_token: token.id,
+        cardholder: this.name,
+        paymenttoken: token.id,
         amount: this.amount,
+        curency: this.curency,
         date: new Date().toDateString(),
         time: new Date().toTimeString(),
-        //user_id: localStorage.getItem("TOKEN")
+        //userId: localStorage.getItem("TOKEN")
       })
 
       .subscribe(
@@ -144,12 +149,13 @@ export class PaymentMethodsPage {
   stripeSourceHandler(source) {
     this.http
       .post("http://localhost:3000/payment", {
-        cardholder: this.cardholder,
-        payment_token: source.id,
+        cardholder: this.name,
+        paymenttoken: source.id,
         amount: this.amount,
+        curency: this.curency,
         date: new Date().toDateString(),
         time: new Date().toTimeString(),
-        //user_id: localStorage.getItem("TOKEN")
+        //userId: localStorage.getItem("TOKEN")
       })
 
       .subscribe(
