@@ -91,7 +91,7 @@ export class PaymentMethodsPage {
             } else {
               console.log(result.token);
               this.stripeTokenHandler(result.token);
-              this.navCtrl.push(PortfolioPage);
+              this.navCtrl.setRoot(PortfolioPage);
               this.donationSuccessful();
             }
           })
@@ -118,7 +118,7 @@ export class PaymentMethodsPage {
             } else {
               // Send the source to your server
               this.stripeSourceHandler(result.source);
-              this.navCtrl.push(PortfolioPage);
+              this.navCtrl.setRoot(PortfolioPage);
               this.donationSuccessful();
             }
           });
