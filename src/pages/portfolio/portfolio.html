@@ -1,16 +1,36 @@
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
 
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Portfolio</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-<ion-grid>
+    <div class="topSection">
+      <img class="profpic" src = "assets/imgs/profpic.gif">
+    </div>
+    <div class="topSectionOverlay"></div>
+    <div class="stats">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h4 class="text">{{this.sum}}</h4>
+            <p class="title">DONATED</p>
+          </ion-col>
+          <ion-col>
+            <h4 class="text">5</h4>
+            <p class="title">CHARITIES</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    
+  
+<!-- <ion-grid>
   <ion-row>
     <ion-col col-5>
         <div>
@@ -41,18 +61,21 @@
         </div>
     </ion-col>
   </ion-row>
-</ion-grid>
+</ion-grid> -->
 
- 
-  <ion-card>
-    <ion-card-header>
-      Donation History
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list *ngFor="let donation of userDonations">
-        <ion-item>
+ <div class="middleSection">
+  <div>
+    Charities Donated To:
+  </div>
+  <div>
+    Donation History
+  </div>
+  <div>
+    <ion-list *ngFor="let donation of userDonations">
+      <ion-item>
+        <ion-row>
           <ion-col class="amount">
-            ${{donation.amount}}
+            {{donation.amount}}
           </ion-col>
           <ion-col text-wrap>
             {{donation.charityName}}
@@ -60,9 +83,11 @@
           <ion-col text-wrap class="date">
             {{donation.date}}
           </ion-col>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </div>
+  
+</div>
 
 </ion-content>

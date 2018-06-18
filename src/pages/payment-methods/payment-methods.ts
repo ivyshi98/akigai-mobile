@@ -16,12 +16,15 @@ export class PaymentMethodsPage {
   card: any;
   card_holder: string;
   amount: number;
+  charitydetail: number;
+  date: Date;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public http: Http,
     private alertCtrl: AlertController) {
+      this.charitydetail = this.navParams.get("charitydetail");
   }
 
   ionViewDidLoad() {
@@ -108,4 +111,22 @@ export class PaymentMethodsPage {
 
     alert.present();
   }
-}
+
+  //create a donation
+  createDonation() {
+    this.http.post("http://localhost:3000/createDonation?charityId="+ this.charitydetail + "&jwt=" + localStorage.getItem("Token"),{
+       amount: this.amount,
+       date: "15 May",
+    })
+       
+       .subscribe(
+        result => {
+          console.log(result);
+          
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    };
+  }
