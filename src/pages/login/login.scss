@@ -1,18 +1,21 @@
 page-login {
-    .bigButton {
-        background-color: map-get($colors, orange);
-        color: white;
-        width: 200px;
-        height: 70px;
-        margin: 0 auto;
-        display: block;
-    }
 
     .title {
         margin-left: 40px;
         font-family: 'Raleway', sans-serif;
         font-size: 60px;
+    }
 
+    .bigButton {
+        margin-top: 15vw;
+        color: map-get($colors, green);
+        border: 2px solid map-get($colors, green);
+        box-shadow: 3px 3px;
+    }
+
+    .bigButton:hover {
+        background-color: map-get($colors, green);
+        box-shadow: 3px 3px;
     }
 
     .list {
@@ -22,18 +25,8 @@ page-login {
         margin: 50px auto;
     }
 
-    .tiger {
-        margin-right: -20px;
-        margin-top: 80px;
-        transform: scale(.5);
+    .cancel {
+        color: map-get($colors, green);
     }
 
-    .grass {
-        height: 200px;
-        width: 100vw; 
-        display: block; 
-        text-align: center;
-        margin: auto;
-        margin-top: -68vw;
-    }
 }

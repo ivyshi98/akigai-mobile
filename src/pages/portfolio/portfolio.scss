@@ -14,4 +14,14 @@ page-portfolio {
         font-size: 50px;
         color: map-get($colors, orange);
     }
+
+    .card {
+        border-radius: 20px;
+        height: 80px;;
+        border: 3px solid map-get($colors, green);
+    }
+    
+    .button {
+        color: map-get($colors, green);
+    }
 }

@@ -21,7 +21,6 @@ export class ProfilePage {
   userInfo: Users = new Users;
 
 constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
-
 }
 
 showUserInfo(){
@@ -37,8 +36,6 @@ showUserInfo(){
       }
     );
   }
-
-
 
 ionViewDidLoad(){
   console.log("ionViewDidLoad ProfilePage")
