@@ -11,6 +11,10 @@ export class PortfolioPage {
 
   userDonations: Array<any> = [];
   sum: number;
+  showSelected1: boolean;
+  first1: boolean;
+  first2: boolean;
+  showSelected2: boolean;
 
   @ViewChild('doughnutCanvas') doughnutCanvas;
 
@@ -20,7 +24,10 @@ export class PortfolioPage {
   //2. when data is passed in, change labels and data of the graph dynamically
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
-   
+    this.showSelected1 = false;
+    this.first1 = true;
+    this.showSelected2 = false;
+    this.first2 = true;
   }
 
   showDonations() {
@@ -49,6 +56,28 @@ export class PortfolioPage {
         console.log(error);
       }
     );
+  }
+
+  toggleContent1() {
+    if (this.first1) {
+      this.showSelected1 = true;
+      this.first1 = !this.first1;
+    }
+    else {
+      this.showSelected1 = false;
+      this.first1 = !(this.first1);
+    }
+  }
+
+  toggleContent2() {
+    if (this.first2) {
+      this.showSelected2 = true;
+      this.first2 = !this.first2;
+    }
+    else {
+      this.showSelected2 = false;
+      this.first2 = !(this.first2);
+    }
   }
 
   ionViewDidLoad() {

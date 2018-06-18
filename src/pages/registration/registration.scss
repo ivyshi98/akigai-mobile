@@ -1,11 +1,14 @@
 page-registration {
     .bigButton {
-        background-color: map-get($colors, orange);
-        color: white;
-        width: 200px;
-        height: 70px;
-        margin: 0 auto;
-        display: block;
+        margin-top: 15vw;
+        color: map-get($colors, green);
+        border: 2px solid map-get($colors, green);
+        box-shadow: 3px 3px;
+    }
+
+    .bigButton:hover {
+        background-color: map-get($colors, green);
+        box-shadow: 3px 3px;
     }
 
     .title {
@@ -22,12 +25,8 @@ page-registration {
         margin: 50px auto;
     }
 
-    .grass {
-        height: 200px;
-        width: 100vw; 
-        display: block; 
-        text-align: center;
-        margin: auto;
-        margin-top: -68vw;
+    .cancel {
+        color: map-get($colors, green);
     }
+
 }

@@ -15,6 +15,7 @@ export class FeedPage {
 
 
   public postProperties: Array<object> = [];
+  public postNumber: number;
 
   constructor(public menuCtrl: MenuController, public navCtrl: NavController, public navParams: NavParams, public http: Http) {
   }
@@ -26,6 +27,7 @@ export class FeedPage {
         result => {
           console.log(result);
           this.postProperties = result.json();
+          this.postNumber = result.json().length;
         },
         error => {
           console.log(error);
@@ -37,6 +39,12 @@ export class FeedPage {
     this.menuCtrl.open()
   }
   
+  // noPosts() {
+  //   var query = ('div.box');
+  //   if (this.postNumber == 0) {
+  //     query.hide();
+  //   }
+  // }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FeedPage');

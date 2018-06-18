@@ -1,28 +1,33 @@
-<link href="https://fonts.googleapis.com/css?family=Grand+Hotel" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300i" rel="stylesheet">
 
 <ion-content text-center color='orange' padding>
-  <div class="title">
-    <h1 class="appname">Charity <br>App</h1>
+  <div class="logo">
+    <img src="assets/imgs/generosityheart.svg">
   </div>
+  
+  <h3 class="title">
+    Generosity
+  </h3>
+  <h5 class="subtitle"> Your kindness <br>grows a long way</h5>
   
   <ion-grid>
       <ion-row>
         <ion-col>
-            <button class="bigButton" ion-button round (click)="navLogin()">SIGN IN</button>
+            <button class="bigButton" ion-button round outline large (click)="navLogin()">SIGN IN</button>
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col>
-            <button class="bigButton" ion-button round (click)="navRegistration()">REGISTER</button>
+        <ion-col class="account">
+            Don't have an account yet? <br><br>
+            <button class="register" ion-button round clear small (click)="navRegistration()">
+              REGISTER
+            </button>
         </ion-col>
       </ion-row>
     </ion-grid>
-    <div class="giraffe">
-      <img  src="assets/imgs/giraffe.jpg">
-    </div>
 </ion-content>
-<ion-footer>
-  <div class="grass">
-    <img  src="assets/imgs/grass.svg">
-  </div>
+
+<ion-footer text-center>
+  
 </ion-footer>

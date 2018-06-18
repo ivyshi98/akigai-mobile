@@ -1,55 +1,68 @@
-
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
 <ion-header>
-    <ion-navbar>
-        <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>Portfolio</ion-title>
-    </ion-navbar>
-  </ion-header>
-   
-     
-    <ion-content>
-        <ion-card>
-            <ion-card-header>
-                Total Donations:
-            </ion-card-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Portfolio</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<ion-grid>
+  <ion-row>
+    <ion-col col-5>
+        <div>
+            <ion-card class="card">
+                <button class ="button" ion-button round full clear (click)="toggleContent1()">Total Donation<ion-icon name="money"></ion-icon></button>
+            </ion-card>
+        </div>
+    </ion-col>
+    <ion-col>
+        <div>
+            <ion-card class="card">
+                <button class ="button" ion-button round full clear (click)="toggleContent2()">Donation Breakdown<ion-icon name="arrow-down"></ion-icon></button>
+            </ion-card>
+        </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-5>
+        <div *ngIf="showSelected1">
             <ion-card-content>
                 <h2 class="sum">${{this.sum}}</h2>
             </ion-card-content>
-          </ion-card>
-     
-        <ion-card>
-          <ion-card-header>
-            Donation Breakdown
-          </ion-card-header>
-          <ion-card-content>
-            <canvas #doughnutCanvas></canvas>
-          </ion-card-content>
-        </ion-card>
-
-        <ion-card>
-            <ion-card-header>
-              Donation History
-            </ion-card-header>
+        </div>
+        <div *ngIf="showSelected2">
             <ion-card-content>
-              <ion-list *ngFor="let donation of userDonations">
-                <ion-item>
-                    <ion-col class="amount">
-                        ${{donation.amount}}
-                    </ion-col>
-                    <ion-col text-wrap>
-                        {{donation.charityName}}
-                    </ion-col>
-                    <ion-col text-wrap class="date">
-                        {{donation.date}}
-                    </ion-col>
-                </ion-item>
-              </ion-list>
-            </ion-card-content>
-          </ion-card>
-     
-    </ion-content>
-  
+                <canvas #doughnutCanvas></canvas>
+              </ion-card-content>
+        </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+ 
+  <ion-card>
+    <ion-card-header>
+      Donation History
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list *ngFor="let donation of userDonations">
+        <ion-item>
+          <ion-col class="amount">
+            ${{donation.amount}}
+          </ion-col>
+          <ion-col text-wrap>
+            {{donation.charityName}}
+          </ion-col>
+          <ion-col text-wrap class="date">
+            {{donation.date}}
+          </ion-col>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,23 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
+<circle cx="195.5" cy="195.5" r="195.5" transform="scale(1.30946)" fill="#C4C4C4"/>
+</mask>
+<g mask="url(#mask0)">
+<path d="M34.5 143.93L23.5 123.43C57.9801 141.796 92 150.93 178 173.93C182.858 164.562 135.432 79.4661 105 37.9296L119.5 28.9296C127.32 37.0988 150.768 79.1683 160 93.9296C155.753 99.8458 147.205 -0.433606 160 5.92963C162.526 10.3464 166.522 -3.63851 169 0.92964C161.295 7.22868 164.566 109.089 174.097 115.43C190.205 147.223 203.372 178.598 207 194.93C210.687 167.256 216.832 94.5996 241.176 49.9296C242.891 46.7822 236.599 5.77368 238.5 2.92964C240.271 0.28001 242.058 3.27313 244 0.92964C246.099 -1.60325 245.69 43.5547 248 41.4296C250.45 39.1751 263.8 22.1647 266.5 20.4296L281 28.9296C234.097 68.6928 226.299 165.071 230.5 189.93C263.644 145.529 284.138 125.47 328.5 109.43H357C155.834 205.893 207 401.43 434.5 200.43C269 431.93 105 395.93 0 229.93C198 335.43 207.907 279.28 169 206.853C152.337 175.833 91.1628 175.33 34.5 143.93Z" transform="translate(-9.16624 62.2916) scale(1.30946)" fill="#622900"/>
+<circle cx="26" cy="26" r="26" transform="translate(309.033 127.018) scale(1.30946)" fill="#329E2F"/>
+<circle cx="17" cy="17" r="17" transform="translate(154.517 150.588) scale(1.30946)" fill="#329E2F"/>
+<circle cx="38" cy="38" r="38" transform="translate(6.54731 163.683) scale(1.30946)" fill="#7CC648"/>
+<circle cx="24.5" cy="24.5" r="24.5" transform="translate(310.343 201.657) scale(1.30946)" fill="#A3DC2C"/>
+<circle cx="15" cy="15" r="15" transform="translate(246.179 216.061) scale(1.30946)" fill="#329E2F"/>
+<circle cx="36.5" cy="36.5" r="36.5" transform="translate(75.9488 60.2353) scale(1.30946)" fill="#A3DC2C"/>
+<circle cx="28" cy="28" r="28" transform="translate(332.604 53.688) scale(1.30946)" fill="#7CC648"/>
+<circle cx="15" cy="15" r="15" transform="translate(324.747 285.463) scale(1.30946)" fill="#329E2F"/>
+<circle cx="41" cy="41" r="41" transform="translate(379.744 121.78) scale(1.30946)" fill="#7CC648"/>
+<circle cx="32.5" cy="32.5" r="32.5" transform="translate(377.125 231.775) scale(1.30946)" fill="#A3DC2C"/>
+<circle cx="24.5" cy="24.5" r="24.5" transform="translate(265.821 5.23785) scale(1.30946)" fill="#A3DC2C"/>
+<circle cx="19.5" cy="19.5" r="19.5" transform="translate(66.7826 268.44) scale(1.30946)" fill="#A3DC2C"/>
+<circle cx="24" cy="24" r="24" transform="translate(170.23 10.4757) scale(1.30946)" fill="#7CC648"/>
+<circle cx="28" cy="28" r="28" transform="translate(117.852 205.586) scale(1.30946)" fill="#329E2F"/>
+<circle cx="41.5" cy="41.5" r="41.5" transform="translate(201.657 73.3299) scale(1.30946)" fill="#A3DC2C"/>
+</g>
+</svg>
