@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { PortfolioPage } from '../portfolio/portfolio';
+// import { param } from "@loopback/rest";
+// import { verify } from "jsonwebtoken";
 
 declare var Stripe;
 
@@ -126,14 +128,13 @@ export class PaymentMethodsPage {
 
   stripeTokenHandler(token) {
     this.http
-      .post("http://localhost:3000/payment", {
+      .post("http://localhost:3000/payment?jwt=" + localStorage.getItem("Token"), {
         cardholder: this.name,
         paymenttoken: token.id,
         amount: this.amount,
         curency: this.curency,
         date: new Date().toDateString(),
-        time: new Date().toTimeString(),
-        //userId: localStorage.getItem("TOKEN")
+        time: new Date().toTimeString()
       })
 
       .subscribe(
@@ -148,14 +149,13 @@ export class PaymentMethodsPage {
 
   stripeSourceHandler(source) {
     this.http
-      .post("http://localhost:3000/payment", {
+      .post("http://localhost:3000/payment?jwt=" + localStorage.getItem("Token"), {
         cardholder: this.name,
         paymenttoken: source.id,
         amount: this.amount,
         curency: this.curency,
         date: new Date().toDateString(),
-        time: new Date().toTimeString(),
-        //userId: localStorage.getItem("TOKEN")
+        time: new Date().toTimeString()
       })
 
       .subscribe(
@@ -178,4 +178,9 @@ export class PaymentMethodsPage {
 
     alert.present();
   }
+
+  // getUserID(@param.query.string('jwt') jwt: string) {
+  //   var jwtBody = verify(jwt, 'encryption') as any;
+  //   userId: jwtBody.user.id
+  // };
 }
