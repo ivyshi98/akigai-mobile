@@ -15,6 +15,7 @@ export class CharitylistPage {
     public charities: Array<Object> = [];
     public charity: any;
     public favouriteCharity: any;
+    public buttonColor: string = 'primary';
 
     @ViewChild('scheduleList', { read: List }) charityList: List;
 
@@ -107,6 +108,14 @@ export class CharitylistPage {
       }
 
       addToFavourite(charityid:number){
+
+         //change button color 
+        // if(this.buttonColor == 'primary'){
+        //   this.buttonColor = 'clear' 
+        //   }else{
+        //   this.buttonColor = 'primary'
+        //   }
+        
         //show alert
         let alert = this.alertCtrl.create({
           title: 'Favorite Added',

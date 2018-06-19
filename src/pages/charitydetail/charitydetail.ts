@@ -32,25 +32,26 @@ export class CharitydetailPage {
 
   
   navigateToNext(currentCharityId:number){
-    this.navCtrl.setRoot(CharitylistPage);
+    // this.navCtrl.setRoot(CharitylistPage);
     this.navCtrl.push(CharitydetailPage,{
       charitydetail:currentCharityId+1,
-    })
+    }).then(() => this.navCtrl.remove(1));
+    //this.navCtrl.setRoot(CharitylistPage);
   }
 
   navigateToPrevious(currentCharityId:number){
-    this.navCtrl.setRoot(CharitylistPage);
+    //this.navCtrl.setRoot(CharitylistPage);
     if (currentCharityId >1 ){
       
       this.navCtrl.push(CharitydetailPage,{
         //if statement for id > 1
         charitydetail:currentCharityId-1,
-      })
+      }).then(() => this.navCtrl.remove(1));
     }else if (currentCharityId == 1){
       this.navCtrl.push(CharitydetailPage,{
         //if statement for id > 1
         charitydetail:currentCharityId,
-      })
+      }).then(() => this.navCtrl.remove(1));
     }
   }
 
