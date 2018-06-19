@@ -1,18 +1,10 @@
 page-portfolio {
     .amount {
         color: map-get($colors, green);
-        font-family: 'Raleway', sans-serif;
-        font-size: 30px;
     }
 
     .date {
         color: grey;
-    }
-
-    .sum {
-        font-family: 'Raleway', sans-serif;
-        font-size: 50px;
-        color: map-get($colors, orange);
     }
 
     .card {
@@ -23,5 +15,68 @@ page-portfolio {
     
     .button {
         color: map-get($colors, green);
+    }
+
+    .topSection {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        margin: auto;
+        height: 250px;
+        width: 100%;
+        background: linear-gradient(to bottom right, map-get($colors, sky), map-get($colors, green));
+        box-shadow: 5px 5px 5px lightgrey;
+    }
+    
+    .topSectionOverlay {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        margin: auto;
+        height: 250px;
+        width: 100%;
+        background-color: white;
+        opacity: 0.5;
+    }
+
+    .middleSection {
+        position: relative;
+        margin-top: 40px;
+    }
+
+    .profpic {
+        width: 90px;
+        height: 90px;
+        background-color: white;
+        border-radius: 50%;
+        box-shadow: 2px 2px 2px map-get($colors, green);
+        object-fit: contain;
+        margin-top: 50px;
+    }
+
+    .blocks1 {
+        float: left;
+    }
+
+    .blocks2 {
+        float: right;
+        margin-left: 10px;
+    }
+
+    .stats {
+        margin-top: 160px;
+    }
+
+    .text {
+        color: white;
+        font-size: 20px;
+        line-height: 0.5;
+    }
+
+    .title {
+        color: white;
+        line-height: 0.7;
     }
 }
