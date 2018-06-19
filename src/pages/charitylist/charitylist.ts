@@ -83,9 +83,10 @@ export class CharitylistPage {
         });
       }  
 
-       navigateToPayment(){
-        this.navCtrl.push(PaymentMethodsPage);
-    
+       navigateToPayment(id: number){
+        this.navCtrl.push(PaymentMethodsPage, {
+          charitydetail:id
+        });
       } 
 
 
@@ -137,5 +138,6 @@ export class CharitylistPage {
       console.log('ionViewDidLoad CharitylistPage');
       this.getCharities();
       }
+
     }
   
