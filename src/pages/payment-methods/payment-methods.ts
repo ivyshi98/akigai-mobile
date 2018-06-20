@@ -34,7 +34,7 @@ export class PaymentMethodsPage {
     public navParams: NavParams,
     public http: Http,
     private alertCtrl: AlertController) {
-      this.charitydetail = this.navParams.get("charitydetail");
+    this.charitydetail = this.navParams.get("charitydetail");
   }
 
   ionViewDidLoad() {
@@ -173,6 +173,22 @@ export class PaymentMethodsPage {
         });
   }
 
+  pushAmountToDonation() {
+    this.http
+      .post("http://localhost:3000/donations?jwt=" + localStorage.getItem("Token"), {
+        amount: this.amount
+      })
+
+      .subscribe(
+        result => {
+          console.log(result);
+        },
+
+        error => {
+          console.log(error);
+        });
+  }
+
   donationSuccessful() {
     let alert = this.alertCtrl.create({
       title: 'Donation Successful',
@@ -187,26 +203,20 @@ export class PaymentMethodsPage {
 
   //create a donation
   createDonation() {
-    this.http.post("http://localhost:3000/createDonation?charityId="+ this.charitydetail + "&jwt=" + localStorage.getItem("Token"),{
-       amount: this.amount,
-       date: "15 May",
+    this.http.post("http://localhost:3000/createDonation?charityId=" + this.charitydetail + "&jwt=" + localStorage.getItem("Token"), {
+      amount: this.amount,
+      date: "15 May",
     })
-       
-       .subscribe(
+
+      .subscribe(
         result => {
           console.log(result);
-          
+
         },
         error => {
           console.log(error);
         }
       );
-    };
-  }
-
-  // getUserID(@param.query.string('jwt') jwt: string) {
-  //   var jwtBody = verify(jwt, 'encryption') as any;
-  //   userId: jwtBody.user.id
-  // };
-
+  };
+}
 
