@@ -22,7 +22,7 @@
             <p class="title">DONATED</p>
           </ion-col>
           <ion-col>
-            <h4 class="text">5</h4>
+            <h4 class="text">{{this.numberCharities}}</h4>
             <p class="title">CHARITIES</p>
           </ion-col>
         </ion-row>
@@ -89,5 +89,16 @@
   </div>
   
 </div>
+
+<ion-card>
+    <ion-card-header>
+      Donation Breakdown
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #doughnutCanvas></canvas>
+      <button ion-button round (click)="loadChart(this.amountarray,this.charityarray)">Reload</button>
+    
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
