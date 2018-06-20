@@ -1,14 +1,14 @@
 page-portfolio {
+    .navbar {
+        background-color: #A3DC2C;
+    }
+    
     .amount {
         color: map-get($colors, green);
     }
 
     .date {
         color: grey;
-    }
-
-    .card {
-        // box-shadow: 0px 0px 0px;
     }
     
     .button {
@@ -21,10 +21,11 @@ page-portfolio {
         right: 0;
         top: 0;
         margin: auto;
-        height: 250px;
+        height: 300px;
         width: 100%;
-        background: linear-gradient(to bottom right, map-get($colors, sky), map-get($colors, green));
+        background: linear-gradient(to bottom right, #A3DC2C, map-get($colors, green));
         box-shadow: 5px 5px 5px lightgrey;
+        color: white;
     }
     
     .topSectionOverlay {
@@ -33,7 +34,7 @@ page-portfolio {
         right: 0;
         top: 0;
         margin: auto;
-        height: 250px;
+        height: 300px;
         width: 100%;
         background-color: white;
         opacity: 0.5;
@@ -41,7 +42,7 @@ page-portfolio {
 
     .portfolio {
         position: absolute;
-        margin-top: 60px;
+        margin-top: 70px;
         width: 95%;
     }
 
@@ -56,7 +57,7 @@ page-portfolio {
     }
 
     .stats {
-        margin-top: 130px;
+        margin-top: 180px;
     }
 
     .text {
@@ -71,19 +72,19 @@ page-portfolio {
     }
 
     .profile {
-        margin-top: 50px;
+        margin-top: 60px;
         z-index: 1;
     }
 
     .segment {
-        margin-top: 210px;
+        margin-top: 260px;
     }
 
     .editButton {
         border-radius: 50% 50%;
         color: map-get($colors, green);
         position: absolute;
-        margin-top: 60px;
+        margin-top: 70px;
         margin-left: 100px;
         background-color: white;
         box-shadow: 2px 2px 8px;
@@ -109,5 +110,9 @@ page-portfolio {
     .bigButton:hover {
         background-color: map-get($colors, green);
         box-shadow: 3px 3px;
+    }
+
+    .badges {
+        margin-top: 150px;
     }
 }

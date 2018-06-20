@@ -12,15 +12,13 @@
 <ion-content>
   <div class="topSection">
     <img class="profpic" src="assets/imgs/profpic.gif">
+    <h4>{{userInfo.firstname}} {{userInfo.lastname}}</h4>
   </div>
   <div class="topSectionOverlay">
 
     <ion-segment [(ngModel)]="menu" class="segment">
       <ion-segment-button (click)="portfolio()" value="portfolio">
         Portfolio
-      </ion-segment-button>
-      <ion-segment-button (click)="badges()" value="badges">
-        Badges
       </ion-segment-button>
       <ion-segment-button (click)="profile()" value="profile">
         Profile
@@ -126,7 +124,15 @@
 
   <button ion-button round outline small class="bigButton" *ngIf="showEditProfile" (click)="submit()" ion-button>Submit</button>
 
-  <div *ngIf="showBadges">
+  <div *ngIf="showBadges" class="badges">
     Testing
+
+    <div *ngIf="showBadge1">
+      <img src="assets/imgs/seed.png">
+    </div>
+
+    <div *ngIf="noBadges">
+      You don't have any badges yet! Get donating to achieve badges.
+    </div>
   </div>
 </ion-content>

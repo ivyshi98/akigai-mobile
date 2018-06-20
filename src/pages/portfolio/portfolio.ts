@@ -16,7 +16,6 @@ export class PortfolioPage {
   showPortfolio: boolean;
   showProfile: boolean;
   showEditProfile: boolean;
-  showBadges: boolean;
   userInfo: Users = new Users;
   public editedUsername: string;
   public editedPassword: string;
@@ -24,6 +23,7 @@ export class PortfolioPage {
   public editedFirstname: string;
   public editedLastname: string;
   public menu: string;
+  public showBadge1: boolean;
 
   @ViewChild('doughnutCanvas') doughnutCanvas;
 
@@ -36,10 +36,10 @@ export class PortfolioPage {
     this.showProfile = false;
     this.showPortfolio = false;
     this.showEditProfile = false;
-    this.showBadges = false;
     this.showDonations();
     this.menu = "portfolio";
     this.portfolio();
+    this.showUserInfo();
   }
 
   showDonations() {
@@ -88,21 +88,18 @@ export class PortfolioPage {
     this.showEditProfile = true;
     this.showPortfolio = false;
     this.showProfile = false;
-    this.showBadges = false;
   }
 
   badges() {
     this.showEditProfile = false;
     this.showPortfolio = false;
     this.showProfile = false;
-    this.showBadges = true;
   }
 
   portfolio() {
     this.showPortfolio = true;
     this.showProfile = false;
     this.showEditProfile = false;
-    this.showBadges = false;
   }
   
   profile() {
@@ -110,7 +107,6 @@ export class PortfolioPage {
     this.showProfile = true;
     this.showPortfolio = false;
     this.showEditProfile = false;
-    this.showBadges = false;
   }
 
   submit() {
@@ -143,6 +139,5 @@ export class PortfolioPage {
   ionViewDidLoad() {
     console.log("ionViewDidLoad PortfolioPage")
 }
-
 }
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { PortfolioPage } from '../portfolio/portfolio';
+import { DatePipe } from '@angular/common'
 // import { param } from "@loopback/rest";
 // import { verify } from "jsonwebtoken";
 
@@ -13,6 +14,8 @@ declare var Stripe;
 })
 export class PaymentMethodsPage {
 
+  date: Date = new Date();
+
   stripe = Stripe('pk_test_9xDCoJstNY3XTH470KJmBNzU');
   card: any;
   name: string;
@@ -23,7 +26,6 @@ export class PaymentMethodsPage {
   amount: number;
 
   charitydetail: number;
-  date: Date;
   curency: string;
   oneTime: boolean;
   monthly: boolean;
@@ -33,6 +35,7 @@ export class PaymentMethodsPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public http: Http,
+    public datepipe: DatePipe,
     private alertCtrl: AlertController) {
       this.charitydetail = this.navParams.get("charitydetail");
   }
@@ -187,9 +190,10 @@ export class PaymentMethodsPage {
 
   //create a donation
   createDonation() {
+    let latest_date = this.datepipe.transform(this.date, 'MM-dd-yyyy');
     this.http.post("http://localhost:3000/createDonation?charityId="+ this.charitydetail + "&jwt=" + localStorage.getItem("Token"),{
        amount: this.amount,
-       date: "15 May",
+       date: latest_date,
     })
        
        .subscribe(
