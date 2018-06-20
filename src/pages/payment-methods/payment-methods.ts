@@ -204,9 +204,4 @@ export class PaymentMethodsPage {
     };
   }
 
-  // getUserID(@param.query.string('jwt') jwt: string) {
-  //   var jwtBody = verify(jwt, 'encryption') as any;
-  //   userId: jwtBody.user.id
-  // };
-}
 

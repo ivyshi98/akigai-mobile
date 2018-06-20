@@ -8,9 +8,7 @@ page-portfolio {
     }
 
     .card {
-        border-radius: 20px;
-        height: 80px;;
-        border: 3px solid map-get($colors, green);
+        // box-shadow: 0px 0px 0px;
     }
     
     .button {
@@ -41,9 +39,10 @@ page-portfolio {
         opacity: 0.5;
     }
 
-    .middleSection {
-        position: relative;
-        margin-top: 40px;
+    .portfolio {
+        position: absolute;
+        margin-top: 60px;
+        width: 95%;
     }
 
     .profpic {
@@ -53,20 +52,11 @@ page-portfolio {
         border-radius: 50%;
         box-shadow: 2px 2px 2px map-get($colors, green);
         object-fit: contain;
-        margin-top: 50px;
-    }
-
-    .blocks1 {
-        float: left;
-    }
-
-    .blocks2 {
-        float: right;
-        margin-left: 10px;
+        margin-top: 30px;
     }
 
     .stats {
-        margin-top: 160px;
+        margin-top: 130px;
     }
 
     .text {
@@ -78,5 +68,46 @@ page-portfolio {
     .title {
         color: white;
         line-height: 0.7;
+    }
+
+    .profile {
+        margin-top: 50px;
+        z-index: 1;
+    }
+
+    .segment {
+        margin-top: 210px;
+    }
+
+    .editButton {
+        border-radius: 50% 50%;
+        color: map-get($colors, green);
+        position: absolute;
+        margin-top: 60px;
+        margin-left: 100px;
+        background-color: white;
+        box-shadow: 2px 2px 8px;
+        z-index: 2;
+    }
+
+    #list {
+        width: 95%;
+    }
+
+    .header {
+        text-align: left;
+        font-size: 20px;
+        font-family: 'Raleway', cursive;
+    }
+
+    .bigButton {
+        color: map-get($colors, green);
+        border: 2px solid map-get($colors, green);
+        box-shadow: 3px 3px;
+    }
+
+    .bigButton:hover {
+        background-color: map-get($colors, green);
+        box-shadow: 3px 3px;
     }
 }
