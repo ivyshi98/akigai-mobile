@@ -96,8 +96,9 @@
     </ion-card-header>
     <ion-card-content>
       <canvas #doughnutCanvas></canvas>
-      <button ion-button round (click)="loadChart(this.amountarray,this.charityarray)">Reload</button>
-    
+      <div class= "loadButton">
+      <button ion-button round (click)="loadChart(this.amountarray,this.charityarray)" clear>Reload</button>
+    </div>
     </ion-card-content>
   </ion-card>
 

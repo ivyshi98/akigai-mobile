@@ -45,6 +45,7 @@ export class CharitylistPage {
         .subscribe(
           result => {
             this.charities = result.json();
+            console.log(this.charities);
           },
           error => {
             console.log(error);
@@ -126,11 +127,32 @@ export class CharitylistPage {
              console.log(result);
              var checkResult = result.json().favorite;
              if (checkResult == false){
+              document.getElementById(`favorite-button-${charityid}`).style.backgroundColor = 'green';
+              this.addConfirm();
               this.addFavourite(charityid);
-              this.buttonColor = 'green';
+              
+              //this.buttonColor = 'green';
+              // let alert = this.alertCtrl.create({
+              //   title: 'Favorite Added',
+              //   buttons: [{
+              //     text: 'OK',
+              //   }]
+              // });
+              // now present the alert on top of all other content
+              // alert.present();
              }else{
+              document.getElementById(`favorite-button-${charityid}`).style.backgroundColor = '#E5271B';
+              this.deleteConfirm();
               this.deleteFavourite(charityid);
-              this.buttonColor = 'primary';
+              //this.buttonColor = 'primary';
+              // let alert = this.alertCtrl.create({
+              //   title: 'Favorite Deleted',
+              //   buttons: [{
+              //     text: 'OK',
+              //   }]
+              // });
+              // now present the alert on top of all other content
+              // alert.present();
             }
 
            },
@@ -138,19 +160,53 @@ export class CharitylistPage {
              console.log(error);
            }
          );
-
-           //show alert
-          let alert = this.alertCtrl.create({
-            title: 'Favorite Added',
-            buttons: [{
-              text: 'OK',
-            }]
-          });
-          // now present the alert on top of all other content
-          alert.present();
-
       }
 
+    addConfirm(){
+      let alert = this.alertCtrl.create({
+        title: 'Add to Favourite',
+        message: 'Do you want to add this charity to favourite?',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Confirm',
+            handler: () => {
+              console.log('Add clicked');
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
+
+    deleteConfirm(){
+      let alert = this.alertCtrl.create({
+        title: 'Delete from Favourite',
+        message: 'This charity has been added. Do you want to delete from favourite?',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Confirm',
+            handler: () => {
+              console.log('Delete clicked');
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
     
     checkFavourite(charityid:number){
       this.http.get("http://localhost:3000/checkfavourite?charityId="+ charityid + "&jwt=" + localStorage.getItem("Token") ,{
