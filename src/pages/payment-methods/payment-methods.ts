@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { PortfolioPage } from '../portfolio/portfolio';
+import { MenuPage } from '../menu/menu';
 // import { param } from "@loopback/rest";
 // import { verify } from "jsonwebtoken";
 
@@ -35,6 +36,12 @@ export class PaymentMethodsPage {
     public http: Http,
     private alertCtrl: AlertController) {
     this.charitydetail = this.navParams.get("charitydetail");
+  }
+
+  ionViewWillEnter() {
+    if (this.card) {
+      this.card.clear();
+    }
   }
 
   ionViewDidLoad() {
@@ -96,7 +103,10 @@ export class PaymentMethodsPage {
             } else {
               console.log(result.token);
               this.stripeTokenHandler(result.token);
-              this.navCtrl.setRoot(PortfolioPage);
+              this.navCtrl.parent.select(2)
+                .then(() => {
+                  this.navCtrl.parent.previousTab().goToRoot();
+                });
               this.donationSuccessful();
             }
           })
@@ -123,7 +133,10 @@ export class PaymentMethodsPage {
             } else {
               // Send the source to your server
               this.stripeSourceHandler(result.source);
-              this.navCtrl.setRoot(PortfolioPage);
+              this.navCtrl.parent.select(2)
+                .then(() => {
+                  this.navCtrl.parent.previousTab().goToRoot();
+                });
               this.donationSuccessful();
             }
           });
