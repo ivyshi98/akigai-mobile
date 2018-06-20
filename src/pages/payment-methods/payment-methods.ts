@@ -208,5 +208,5 @@ export class PaymentMethodsPage {
   //   var jwtBody = verify(jwt, 'encryption') as any;
   //   userId: jwtBody.user.id
   // };
-}
+
 
