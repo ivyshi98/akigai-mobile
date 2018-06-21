@@ -10,85 +10,134 @@
 </ion-header>
 
 <ion-content>
-    <div class="topSection">
-      <img class="profpic" src = "assets/imgs/profpic.gif">
-    </div>
-    <div class="topSectionOverlay"></div>
-    <div class="stats">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <h4 class="text">{{this.sum}}</h4>
-            <p class="title">DONATED</p>
-          </ion-col>
-          <ion-col>
-            <h4 class="text">{{this.numberCharities}}</h4>
-            <p class="title">CHARITIES</p>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-    
-  
-<!-- <ion-grid>
-  <ion-row>
-    <ion-col col-5>
-        <div>
-            <ion-card class="card">
-                <button class ="button" ion-button round full clear (click)="toggleContent1()">Total Donation<ion-icon name="money"></ion-icon></button>
-            </ion-card>
-        </div>
-    </ion-col>
-    <ion-col>
-        <div>
-            <ion-card class="card">
-                <button class ="button" ion-button round full clear (click)="toggleContent2()">Donation Breakdown<ion-icon name="arrow-down"></ion-icon></button>
-            </ion-card>
-        </div>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col col-5>
-        <div *ngIf="showSelected1">
-            <ion-card-content>
-                <h2 class="sum">${{this.sum}}</h2>
-            </ion-card-content>
-        </div>
-        <div *ngIf="showSelected2">
-            <ion-card-content>
-                <canvas #doughnutCanvas></canvas>
-              </ion-card-content>
-        </div>
-    </ion-col>
-  </ion-row>
-</ion-grid> -->
 
- <div class="middleSection">
-  <div>
-    Charities Donated To:
+  <div class="topSection">
+    <img class="profpic" src="assets/imgs/profpic.gif">
+    <h4>{{userInfo.firstname}} {{userInfo.lastname}}</h4>
   </div>
-  <div>
-    Donation History
+  <div class="topSectionOverlay">
+
+    <ion-segment [(ngModel)]="menu" class="segment">
+      <ion-segment-button (click)="portfolio()" value="portfolio">
+        Portfolio
+      </ion-segment-button>
+      <ion-segment-button (click)="profile()" value="profile">
+        Profile
+      </ion-segment-button>
+    </ion-segment>
+
   </div>
+
+  <div class="stats">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h4 class="text">{{this.sum}}</h4>
+          <p class="title">DONATED</p>
+        </ion-col>
+        <ion-col>
+          <h4 class="text">5</h4>
+          <p class="title">CHARITIES</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="portfolio" *ngIf="showPortfolio">
+    <ion-card>
+        <ion-card-header class="header">
+            Donation History
+        </ion-card-header>
+      <ion-card-content>
+
+        <div>
+          <ion-list *ngFor="let donation of userDonations" id="list">
+            <ion-item>
+              <ion-grid>
+                  <ion-row style="line-height:0px;">
+                      <ion-col class="amount">
+                          ${{donation.amount}}
+                        </ion-col>
+                        <ion-col text-wrap>
+                          {{donation.charityName}}
+                        </ion-col>
+                        <ion-col class="date">
+                          {{donation.date}}
+                        </ion-col>
+                  </ion-row>
+              </ion-grid>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
   <div>
-    <ion-list *ngFor="let donation of userDonations">
+    <button class="editButton" (click)="editProfile()" *ngIf="showProfile" ion-button>
+      <ion-icon name="create"></ion-icon>
+    </button>
+  </div>
+
+  <div class="profile" *ngIf="showProfile">
+    <ion-list no-lines>
       <ion-item>
-        <ion-row>
-          <ion-col class="amount">
-            {{donation.amount}}
-          </ion-col>
-          <ion-col text-wrap>
-            {{donation.charityName}}
-          </ion-col>
-          <ion-col text-wrap class="date">
-            {{donation.date}}
-          </ion-col>
-        </ion-row>
+        Name
+        <p>{{userInfo.firstname}} {{userInfo.lastname}}</p>
+      </ion-item>
+      <ion-item>
+        Username
+        <br>
+        <p>{{userInfo.username}}</p>
+      </ion-item>
+
+      <ion-item>
+        Email
+        <br>
+        <p>{{userInfo.email}}</p>
       </ion-item>
     </ion-list>
   </div>
-  
-</div>
+
+
+  <div class="profile" *ngIf="showEditProfile">
+    <ion-list no-lines>
+      <ion-item>
+        <ion-label stacked>First Name</ion-label>
+        <ion-input type="text" [(ngModel)]="editedFirstname" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked> Last Name</ion-label>
+        <ion-input type="text" [(ngModel)]="editedLastname" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Username</ion-label>
+        <ion-input type="text" [(ngModel)]="editedUsername" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>Password</ion-label>
+        <ion-input type="text" [(ngModel)]="editedPassword" type="Password"></ion-input>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <button ion-button round outline small class="bigButton" *ngIf="showEditProfile" (click)="submit()" ion-button>Submit</button>
+
+  <div *ngIf="showBadges" class="badges">
+    Testing
+
+    <div *ngIf="showBadge1">
+      <img src="assets/imgs/seed.png">
+    </div>
+
+    <div *ngIf="noBadges">
+      You don't have any badges yet! Get donating to achieve badges.
+    </div>
+  </div>
 
 <ion-card>
     <ion-card-header>
@@ -100,5 +149,6 @@
     
     </ion-card-content>
   </ion-card>
+
 
 </ion-content>

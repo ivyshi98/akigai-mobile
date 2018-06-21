@@ -1,4 +1,5 @@
 page-portfolio {
+    
     .amount {
         color: map-get($colors, green);
     }
@@ -7,11 +8,13 @@ page-portfolio {
         color: grey;
     }
 
+
     .card {
         border-radius: 20px;
         height: 400px;;
         border: 3px solid map-get($colors, green);
     }
+
     
     .button {
         color: map-get($colors, green);
@@ -23,10 +26,11 @@ page-portfolio {
         right: 0;
         top: 0;
         margin: auto;
-        height: 250px;
+        height: 300px;
         width: 100%;
-        background: linear-gradient(to bottom right, map-get($colors, sky), map-get($colors, green));
+        background: linear-gradient(to bottom right, #A3DC2C, map-get($colors, green));
         box-shadow: 5px 5px 5px lightgrey;
+        color: white;
     }
     
     .topSectionOverlay {
@@ -35,15 +39,16 @@ page-portfolio {
         right: 0;
         top: 0;
         margin: auto;
-        height: 250px;
+        height: 300px;
         width: 100%;
         background-color: white;
         opacity: 0.5;
     }
 
-    .middleSection {
-        position: relative;
-        margin-top: 40px;
+    .portfolio {
+        position: absolute;
+        margin-top: 70px;
+        width: 95%;
     }
 
     .profpic {
@@ -53,20 +58,11 @@ page-portfolio {
         border-radius: 50%;
         box-shadow: 2px 2px 2px map-get($colors, green);
         object-fit: contain;
-        margin-top: 50px;
-    }
-
-    .blocks1 {
-        float: left;
-    }
-
-    .blocks2 {
-        float: right;
-        margin-left: 10px;
+        margin-top: 30px;
     }
 
     .stats {
-        margin-top: 160px;
+        margin-top: 180px;
     }
 
     .text {
@@ -78,5 +74,50 @@ page-portfolio {
     .title {
         color: white;
         line-height: 0.7;
+    }
+
+    .profile {
+        margin-top: 60px;
+        z-index: 1;
+    }
+
+    .segment {
+        margin-top: 260px;
+    }
+
+    .editButton {
+        border-radius: 50% 50%;
+        color: map-get($colors, green);
+        position: absolute;
+        margin-top: 70px;
+        margin-left: 100px;
+        background-color: white;
+        box-shadow: 2px 2px 8px;
+        z-index: 2;
+    }
+
+    #list {
+        width: 95%;
+    }
+
+    .header {
+        text-align: left;
+        font-size: 20px;
+        font-family: 'Raleway', cursive;
+    }
+
+    .bigButton {
+        color: map-get($colors, green);
+        border: 2px solid map-get($colors, green);
+        box-shadow: 3px 3px;
+    }
+
+    .bigButton:hover {
+        background-color: map-get($colors, green);
+        box-shadow: 3px 3px;
+    }
+
+    .badges {
+        margin-top: 150px;
     }
 }

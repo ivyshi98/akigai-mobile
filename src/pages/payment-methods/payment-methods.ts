@@ -2,7 +2,13 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { PortfolioPage } from '../portfolio/portfolio';
+
+import { DatePipe } from '@angular/common'
+// import { param } from "@loopback/rest";
+// import { verify } from "jsonwebtoken";
+
 import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
+
 
 declare var Stripe;
 
@@ -11,6 +17,8 @@ declare var Stripe;
   templateUrl: 'payment-methods.html',
 })
 export class PaymentMethodsPage {
+
+  date: Date = new Date();
 
   stripe = Stripe('pk_test_9xDCoJstNY3XTH470KJmBNzU');
   card: any;
@@ -27,12 +35,18 @@ export class PaymentMethodsPage {
   currency: string;
 
   charitydetail: number;
+
+  currency: string;
+  oneTime: boolean;
+  monthly: boolean;
   date: Date;
+
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public http: Http,
+    public datepipe: DatePipe,
     private alertCtrl: AlertController) {
     this.charitydetail = this.navParams.get("charitydetail");
   }
@@ -254,9 +268,12 @@ export class PaymentMethodsPage {
 
   //create a donation
   createDonation() {
-    this.http.post("http://localhost:3000/createDonation?charityId=" + this.charitydetail + "&jwt=" + localStorage.getItem("Token"), {
-      amount: this.amount,
-      date: new Date().toDateString(),
+
+    let latest_date = this.datepipe.transform(this.date, 'MM-dd-yyyy');
+    this.http.post("http://localhost:3000/createDonation?charityId="+ this.charitydetail + "&jwt=" + localStorage.getItem("Token"),{
+       amount: this.amount,
+       date: latest_date,
+
     })
 
       .subscribe(
@@ -268,6 +285,8 @@ export class PaymentMethodsPage {
           console.log(error);
         }
       );
+
   };
 }
+
 
