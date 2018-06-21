@@ -1,44 +1,53 @@
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
-<ion-content>
+<ion-content text-center>
     <h1 class="title">Register</h1>
 
-    <ion-list>
+    <form [formGroup]="registration" (ngSubmit)="onSubmit()">
         <ion-item>
-            <ion-input type="text" placeholder="Username" [(ngModel)]="username" type="text"></ion-input>
+            <ion-input formControlName="username" type="text" placeholder="Username"></ion-input>
         </ion-item>
+        <p ion-text [hidden]="registration.controls.username.valid || submitted === false" color="danger" padding-left>
+            Please enter a username
+        </p>
 
         <ion-item>
-            <ion-input type="text" placeholder="First Name" [(ngModel)]="firstname" type="text"></ion-input>
+            <ion-input formControlName="firstname" type="text" placeholder="First Name"></ion-input>
         </ion-item>
+        <p ion-text [hidden]="registration.controls.firstname.valid || submitted === false" color="danger" padding-left>
+            Please enter a first name
+        </p>
 
         <ion-item>
-            <ion-input type="text" placeholder="Last Name" [(ngModel)]="lastname" type="text"></ion-input>
+            <ion-input formControlName="lastname" type="text" placeholder="Last Name"></ion-input>
         </ion-item>
+        <p ion-text [hidden]="registration.controls.lastname.valid || submitted === false" color="danger" padding-left>
+            Please enter a last name
+        </p>
 
         <ion-item>
-            <ion-input type="text" placeholder="Email" [(ngModel)]="email" type="email"></ion-input>
+            <ion-input formControlName="email" type="email" placeholder="Email"></ion-input>
         </ion-item>
+        <p ion-text [hidden]="registration.controls.email.valid || submitted === false" color="danger" padding-left>
+            Please enter a valid email
+        </p>
 
         <ion-item>
-            <ion-input type="text" placeholder="Password" [(ngModel)]="password" type="Password"></ion-input>
+            <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
         </ion-item>
+        <p ion-text [hidden]="registration.controls.password.valid || submitted === false" color="danger" padding-left>
+            Please enter a password at least 8 characters long
+        </p>
 
         <ion-item>
-            <ion-input type="text" placeholder="Confirm Password" [(ngModel)]="passwordCheck" type="Password"></ion-input>
+            <ion-input formControlName="passwordCheck" type="password" placeholder="Confirm Password"></ion-input>
         </ion-item>
-    </ion-list>
+        <p ion-text [hidden]="registration.controls.password.valid || submitted === false" color="danger" padding-left>
+            Please enter the same password
+        </p>
 
-    <ion-grid text-center>
-        <ion-row>
-          <ion-col>
-              <button class="bigButton" ion-button round outline large (click)="register()">Register</button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-              <button class="cancel" ion-button round clear small (click)="navHome()">Cancel</button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+        <button class="bigButton" ion-button round outline large type="submit">Register</button>
+    </form>
+
+    <button class="cancel" ion-button round clear small (click)="navHome()">Cancel</button>
 </ion-content>

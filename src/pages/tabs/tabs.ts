@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavParams, MenuController } from 'ionic-angular';
 import { CharitylistPage } from '../charitylist/charitylist';
 import { PortfolioPage } from '../portfolio/portfolio';
 import { FeedPage } from '../feed/feed';
