@@ -19,6 +19,7 @@ export class PortfolioPage {
   showPortfolio: boolean;
   showProfile: boolean;
   showEditProfile: boolean;
+  seeDonations: boolean;
   userInfo: Users = new Users;
   public editedUsername: string;
   public editedPassword: string;
@@ -49,12 +50,14 @@ export class PortfolioPage {
     this.showProfile = false;
     this.showPortfolio = false;
     this.showEditProfile = false;
+    this.seeDonations = false;
     this.menu = "portfolio";
     this.showDonations();
     this.getAmount();
     
     this.portfolio();
     this.showUserInfo();
+    // this.showDonationInfo()
   }
 
   showDonations() {
@@ -244,7 +247,21 @@ export class PortfolioPage {
   ionViewDidLoad() {
     console.log("ionViewDidLoad PortfolioPage")
     // this.loadChart(this.amountarray, this.charityarray);
+    // this.showDonationInfo();
   }
+
+  // showDonationInfo() {
+  //   console.log('test1');
+  //   if (this.sum == 0) {
+  //     this.showPortfolio = false;
+  //     this.seeDonations = true;
+  //     console.log('test2');
+  //   }
+
+  //   else {
+  //     this.seeDonations = false;
+  //   }
+  // }
 
 }
 

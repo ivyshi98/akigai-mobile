@@ -3,7 +3,7 @@
 <ion-content text-center>
     <h1 class="title">Register</h1>
 
-    <form [formGroup]="registration" (ngSubmit)="onSubmit()">
+    <form [formGroup]="registration" (ngSubmit)="onSubmit()" class="form">
         <ion-item>
             <ion-input formControlName="username" type="text" placeholder="Username"></ion-input>
         </ion-item>
