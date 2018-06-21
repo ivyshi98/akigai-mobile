@@ -215,5 +215,3 @@ export class PaymentMethodsPage {
     alert.present();
   }
 }
-
-
