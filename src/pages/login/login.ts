@@ -4,6 +4,7 @@ import { HomePage } from '../home/home';
 import { Http } from '@angular/http';
 import { MenuPage } from '../menu/menu';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { getBaseUrl } from '../../getBaseUrl';
 
 
 @IonicPage()
@@ -20,6 +21,7 @@ export class LoginPage {
   public submitted: boolean = false;
 
   constructor(
+    public getBaseUrl: getBaseUrl,
     public navCtrl: NavController,
     public navParams: NavParams,
     public http: Http,
@@ -39,7 +41,7 @@ export class LoginPage {
   }
 
   navToFeed() {
-    this.http.post("http://localhost:3000/login", {
+    this.http.post(this.getBaseUrl.getBaseUrl() + "/login", {
       username: this.login.get('username').value,
       password: this.login.get('password').value
     })

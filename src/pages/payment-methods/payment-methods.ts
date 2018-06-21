@@ -3,6 +3,7 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoadingController } from 'ionic-angular';
+import { getBaseUrl } from '../../getBaseUrl';
 
 declare var Stripe;
 
@@ -28,6 +29,7 @@ export class PaymentMethodsPage {
   private anim: any;
 
   constructor(
+    public getBaseUrl: getBaseUrl,
     public navCtrl: NavController,
     public navParams: NavParams,
     public http: Http,
@@ -166,7 +168,7 @@ export class PaymentMethodsPage {
 
   stripeTokenHandler(token) {
     this.http
-      .post("http://localhost:3000/payment?jwt=" + localStorage.getItem("Token"), {
+      .post(this.getBaseUrl.getBaseUrl() + "/payment?jwt=" + localStorage.getItem("Token"), {
         cardholder: this.payment.get('card_holder').value,
         paymenttoken: token.id,
         amount: this.payment.get('amount').value,
@@ -187,7 +189,7 @@ export class PaymentMethodsPage {
 
   stripeSourceHandler(source) {
     this.http
-      .post("http://localhost:3000/payment?jwt=" + localStorage.getItem("Token"), {
+      .post(this.getBaseUrl.getBaseUrl() + "/payment?jwt=" + localStorage.getItem("Token"), {
         cardholder: this.payment.get('card_holder').value,
         paymenttoken: source.id,
         amount: this.payment.get('amount').value,
@@ -208,7 +210,7 @@ export class PaymentMethodsPage {
 
   //create a donation
   createDonation() {
-    this.http.post("http://localhost:3000/createDonation?charityId=" + this.charitydetail + "&jwt=" + localStorage.getItem("Token"), {
+    this.http.post(this.getBaseUrl.getBaseUrl() + "/createDonation?charityId=" + this.charitydetail + "&jwt=" + localStorage.getItem("Token"), {
       amount: this.payment.get('amount').value,
       date: new Date().toDateString(),
     })

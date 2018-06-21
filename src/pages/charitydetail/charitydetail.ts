@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http'
 import { PaymentMethodsPage } from '../payment-methods/payment-methods';
+import { getBaseUrl } from '../../getBaseUrl';
 
 @IonicPage()
 @Component({
@@ -15,7 +16,7 @@ export class CharitydetailPage {
   public nextId:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  public http: Http) {
+  public http: Http, public getBaseUrl: getBaseUrl) {
     this.charitydetail = this.navParams.get("charitydetail");
   }
 
@@ -44,7 +45,7 @@ export class CharitydetailPage {
   }
 
   getCharityDetail(charityid:number) {
-    this.http.get("http://localhost:3000/charity/" 
+    this.http.get(this.getBaseUrl.getBaseUrl() + "/charity/" 
     + charityid, {
       })
       .subscribe(

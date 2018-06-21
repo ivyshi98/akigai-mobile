@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { MenuController } from 'ionic-angular';
+import { getBaseUrl } from '../../getBaseUrl';
 
 @IonicPage()
 @Component({
@@ -17,13 +18,13 @@ export class FeedPage {
   // public likeSelected: boolean;
   // public likeCount: number;
 
-  constructor(public menuCtrl: MenuController, public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+  constructor(public getBaseUrl: getBaseUrl, public menuCtrl: MenuController, public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     // this.likeSelected = false;
     // this.likeCount = 0;
   }
 
   viewPage() {
-    this.http.get("http://localhost:3000/posts?jwt=" + localStorage.getItem("Token"), {
+    this.http.get(this.getBaseUrl.getBaseUrl() + "/posts?jwt=" + localStorage.getItem("Token"), {
     })
       .subscribe(
         result => {

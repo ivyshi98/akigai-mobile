@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Users } from '../../models/users';
 import { Chart } from 'chart.js';
+import { getBaseUrl } from '../../getBaseUrl';
 
 
 @IonicPage()
@@ -44,7 +45,7 @@ export class PortfolioPage {
 
   //2. when data is passed in, change labels and data of the graph dynamically
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+  constructor(public getBaseUrl: getBaseUrl, public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     this.showProfile = false;
     this.showPortfolio = false;
     this.showEditProfile = false;
@@ -57,7 +58,7 @@ export class PortfolioPage {
   }
 
   showDonations() {
-    this.http.get("http://localhost:3000/donations?jwt=" + localStorage.getItem("Token"),{
+    this.http.get(this.getBaseUrl.getBaseUrl() + "/donations?jwt=" + localStorage.getItem("Token"),{
     })
     .subscribe(
       result => {
@@ -85,7 +86,7 @@ export class PortfolioPage {
   }
 
   showUserInfo(){
-    this.http.get("http://localhost:3000/User?jwt=" + localStorage.getItem("Token"),{
+    this.http.get(this.getBaseUrl.getBaseUrl() + "/User?jwt=" + localStorage.getItem("Token"),{
       })
       .subscribe(
         result => {
@@ -125,7 +126,7 @@ export class PortfolioPage {
   }
 
   changeUserInfo() {
-    this.http.patch("http://localhost:3000/updateUser?jwt=" + localStorage.getItem("Token"), {
+    this.http.patch(this.getBaseUrl.getBaseUrl() + "/updateUser?jwt=" + localStorage.getItem("Token"), {
       username: this.editedUsername,
       password: this.editedPassword,
       firstname: this.editedFirstname,
@@ -149,7 +150,7 @@ export class PortfolioPage {
   //charityarray
   getAmount(){
     //get all donation history with charity id
-    this.http.get("http://localhost:3000/donations?&jwt=" + localStorage.getItem("Token") ,{
+    this.http.get(this.getBaseUrl.getBaseUrl() + "/donations?&jwt=" + localStorage.getItem("Token") ,{
           })
           .subscribe(
             result => {
@@ -214,20 +215,19 @@ export class PortfolioPage {
               label: 'Amount of donations',
               data: amountarray,
               backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
+                "#234d20",
+                "#36802d",
+                "#77ab59",
+                "#c9df8a",
+                "#f0f7da"
+                  
               ],
               hoverBackgroundColor: [
-                  "#FF6384",
-                  "#36A2EB",
-                  "#FFCE56",
-                  "#FF6384",
-                  "#36A2EB",
-                  "#FFCE56"
+                'rgba(35,77,32, 0.2)',
+                'rgba(54,128,45, 0.2)',
+                'rgba(119,171,89,0.2)',
+                'rgba(201,223,138, 0.2)',
+                'rgba(240,247,218, 0.2)'
                 ]
           }]
         }

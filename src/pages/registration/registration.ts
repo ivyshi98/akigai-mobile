@@ -4,6 +4,7 @@ import { HomePage } from '../home/home';
 import { Http } from '@angular/http';
 import { LoginPage } from '../login/login';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { getBaseUrl } from '../../getBaseUrl';
 
 @IonicPage()
 @Component({
@@ -15,7 +16,7 @@ export class RegistrationPage {
   public registration: FormGroup;
   public submitted: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public formBuilder: FormBuilder) {
+  constructor(public getBaseUrl: getBaseUrl, public navCtrl: NavController, public navParams: NavParams, public http: Http, public formBuilder: FormBuilder) {
     this.registration = this.formBuilder.group({
       username: ['', Validators.required],
       firstname: ['', Validators.required],
@@ -36,7 +37,7 @@ export class RegistrationPage {
 
   register() {
     if (this.registration.get('password').value == this.registration.get('passwordCheck').value) {
-      this.http.post("http://localhost:3000/registration", {
+      this.http.post(this.getBaseUrl.getBaseUrl() + "/registration", {
         username: this.registration.get('username').value,
         password: this.registration.get('password').value,
         firstname: this.registration.get('firstname').value,
