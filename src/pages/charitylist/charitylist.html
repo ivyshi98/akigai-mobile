@@ -4,7 +4,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-segment>
+    <ion-segment color="white">
       <ion-segment-button (click)="allCharities()" value="all">
         All
       </ion-segment-button>
@@ -21,21 +21,15 @@
     </ion-buttons>
   </ion-navbar>
 
-  <ion-toolbar no-border-top>
+</ion-header>
+   
+    <ion-content padding>
+
     <ion-searchbar color="primary"
                    [(ngModel)]="queryText"
                    (ionInput)="updateSchedule()"
                    placeholder="Search">
     </ion-searchbar>
-  </ion-toolbar>
-</ion-header>
-   
-    <ion-content padding>
-    <!--
- 
-      <ion-searchbar placeholder = "search bar currently not working" [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
-      </ion-searchbar>
-    -->
 
       <ion-card ion-item *ngFor="let item of charities">
     

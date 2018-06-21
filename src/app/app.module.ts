@@ -11,7 +11,6 @@ import { LoginPage } from '../pages/login/login';
 import { RegistrationPage } from '../pages/registration/registration';
 import { Http, HttpModule } from '@angular/http';
 import { FeedPage } from '../pages/feed/feed';
-import { ProfilePage } from '../pages/profile/profile';
 import { PortfolioPage } from '../pages/portfolio/portfolio';
 import { CharitylistPage } from '../pages/charitylist/charitylist';
 import { MenuPage } from '../pages/menu/menu';
@@ -31,7 +30,6 @@ import { PaymentMethodsPage } from '../pages/payment-methods/payment-methods';
     HomePage,
     LoginPage,
     RegistrationPage,
-    ProfilePage,
     CharitydetailPage,
     CharityfilterPage,
     PaymentMethodsPage
@@ -52,7 +50,6 @@ import { PaymentMethodsPage } from '../pages/payment-methods/payment-methods';
     HomePage,
     LoginPage,
     RegistrationPage,
-    ProfilePage,
     CharitydetailPage,
     CharityfilterPage,
     PaymentMethodsPage

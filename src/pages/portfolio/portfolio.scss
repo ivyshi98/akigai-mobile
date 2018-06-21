@@ -1,5 +1,5 @@
 page-portfolio {
-    
+
     .amount {
         color: map-get($colors, green);
     }
@@ -8,11 +8,8 @@ page-portfolio {
         color: grey;
     }
 
-
     .card {
-        border-radius: 20px;
-        height: 400px;;
-        border: 3px solid map-get($colors, green);
+        box-shadow: 0 0 0;
     }
 
     
@@ -28,7 +25,7 @@ page-portfolio {
         margin: auto;
         height: 300px;
         width: 100%;
-        background: linear-gradient(to bottom right, #A3DC2C, map-get($colors, green));
+        background: linear-gradient(to bottom right, #A3DC2C, map-get($colors, darkGreen));
         box-shadow: 5px 5px 5px lightgrey;
         color: white;
     }

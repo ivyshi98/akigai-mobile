@@ -7,7 +7,6 @@ import {HomePage } from '../../pages/home/home';
 import { Chart } from 'chart.js';
 
 
-
 @IonicPage()
 @Component({
   selector: 'page-portfolio',
@@ -51,8 +50,10 @@ export class PortfolioPage {
     this.showProfile = false;
     this.showPortfolio = false;
     this.showEditProfile = false;
-    this.showDonations();
     this.menu = "portfolio";
+    this.showDonations();
+    this.getAmount();
+    
     this.portfolio();
     this.showUserInfo();
   }
@@ -104,24 +105,20 @@ export class PortfolioPage {
     this.showPortfolio = false;
     this.showProfile = false;
   }
-
-  badges() {
-    this.showEditProfile = false;
-    this.showPortfolio = false;
-    this.showProfile = false;
-  }
-
-  portfolio() {
-    this.showPortfolio = true;
-    this.showProfile = false;
-    this.showEditProfile = false;
-  }
   
   profile() {
     this.showUserInfo();
     this.showProfile = true;
     this.showPortfolio = false;
     this.showEditProfile = false;
+  }
+
+  portfolio() {
+    this.showPortfolio = true;
+    this.showProfile = false;
+    this.showEditProfile = false;
+    // this.loadChart(this.amountarray,this.charityarray);
+    this.getAmount();
   }
 
   submit() {
@@ -158,6 +155,9 @@ export class PortfolioPage {
           })
           .subscribe(
             result => {
+              this.charityarray = [];
+              this.amountarray = [];
+
               console.log(result);
               var resultCharities = result.json();
               //create a new map 
@@ -195,7 +195,7 @@ export class PortfolioPage {
               //         "donationAmount": newamountarray};
 
               
-              
+            this.loadChart(this.amountarray,this.charityarray);
  
             },
             error => {
@@ -240,10 +240,11 @@ export class PortfolioPage {
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad PortfolioPage")
+    // this.loadChart(this.amountarray, this.charityarray);
+  }
 
-    this.showDonations();
-    this.getAmount();
-    
+  refresh() {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
   }
 
 

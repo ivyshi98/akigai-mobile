@@ -3,7 +3,6 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Nav, MenuController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
-import { ProfilePage } from '../profile/profile';
  
 export interface PageInterface {
 
@@ -36,12 +35,6 @@ export class MenuPage {
     
 
   ];
-
-  AccountPages: PageInterface[] = [
-    { title: 'Account', pageName: 'ProfilePage', component: ProfilePage, icon:'person'}
-   
-  ];
- 
   constructor(public menuCtrl: MenuController, public navCtrl: NavController) { }
   
   openMenu(){

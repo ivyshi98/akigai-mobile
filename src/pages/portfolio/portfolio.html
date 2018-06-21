@@ -11,17 +11,21 @@
 
 <ion-content>
 
+    <ion-refresher (ionRefresh)="refresh()">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
   <div class="topSection">
     <img class="profpic" src="assets/imgs/profpic.gif">
     <h4>{{userInfo.firstname}} {{userInfo.lastname}}</h4>
   </div>
   <div class="topSectionOverlay">
 
-    <ion-segment [(ngModel)]="menu" class="segment">
-      <ion-segment-button (click)="portfolio()" value="portfolio">
+    <ion-segment [(ngModel)]="menu" class="segment" color="green">
+      <ion-segment-button color="green" (click)="portfolio()" value="portfolio">
         Portfolio
       </ion-segment-button>
-      <ion-segment-button (click)="profile()" value="profile">
+      <ion-segment-button color="green" (click)="profile()" value="profile">
         Profile
       </ion-segment-button>
     </ion-segment>
@@ -36,7 +40,7 @@
           <p class="title">DONATED</p>
         </ion-col>
         <ion-col>
-          <h4 class="text">5</h4>
+          <h4 class="text">{{this.numberCharities}}</h4>
           <p class="title">CHARITIES</p>
         </ion-col>
       </ion-row>
@@ -44,27 +48,37 @@
   </div>
 
   <div class="portfolio" *ngIf="showPortfolio">
+    
     <ion-card>
-        <ion-card-header class="header">
-            Donation History
-        </ion-card-header>
+      <ion-card-header class="header">
+        Donation Breakdown
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #doughnutCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-card>
+      <ion-card-header class="header">
+        Donation History
+      </ion-card-header>
       <ion-card-content>
 
         <div>
           <ion-list *ngFor="let donation of userDonations" id="list">
             <ion-item>
               <ion-grid>
-                  <ion-row style="line-height:0px;">
-                      <ion-col class="amount">
-                          ${{donation.amount}}
-                        </ion-col>
-                        <ion-col text-wrap>
-                          {{donation.charityName}}
-                        </ion-col>
-                        <ion-col class="date">
-                          {{donation.date}}
-                        </ion-col>
-                  </ion-row>
+                <ion-row style="line-height:20px;">
+                  <ion-col class="amount">
+                    ${{donation.amount}}
+                  </ion-col>
+                  <ion-col text-wrap>
+                    {{donation.charityName}}
+                  </ion-col>
+                  <ion-col text-wrap class="date">
+                    {{donation.date}}
+                  </ion-col>
+                </ion-row>
               </ion-grid>
             </ion-item>
           </ion-list>
@@ -138,17 +152,6 @@
       You don't have any badges yet! Get donating to achieve badges.
     </div>
   </div>
-
-<ion-card>
-    <ion-card-header>
-      Donation Breakdown
-    </ion-card-header>
-    <ion-card-content>
-      <canvas #doughnutCanvas></canvas>
-      <button ion-button round (click)="loadChart(this.amountarray,this.charityarray)">Reload</button>
-    
-    </ion-card-content>
-  </ion-card>
 
 
 </ion-content>

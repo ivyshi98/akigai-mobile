@@ -38,14 +38,19 @@ $colors: (
   orange:     #F0A629,
   beige:      #D0B087,
   sky:        #63AED6,
-  green:      #28651F
+  green:      #5f845f,
+  darkGreen: #28651F,
+  lightGreen: #AACB91,
+  white: white,
 );
+
+
 
 $button-round-padding-end: 5rem;
 
-$toolbar-ios-background: #C0DE92;
-$toolbar-md-background: #C0DE92;
-$toolbar-wp-background: #C0DE92;
+$toolbar-ios-background: #AACB91;
+$toolbar-md-background: #AACB91;
+$toolbar-wp-background: #AACB91;
 
 
 

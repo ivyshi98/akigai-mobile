@@ -16,8 +16,12 @@ export class FeedPage {
 
   public postProperties: Array<object> = [];
   public postNumber: number;
+  // public likeSelected: boolean;
+  // public likeCount: number;
 
   constructor(public menuCtrl: MenuController, public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+    // this.likeSelected = false;
+    // this.likeCount = 0;
   }
 
   viewPage() {
@@ -52,6 +56,19 @@ export class FeedPage {
     console.log("profile token: ", this.token);
     this.viewPage();
   }
+
+  refresh() {
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
+  }
+
+  // like() {
+  //   if (this.likeSelected==false) {
+  //     this.likeCount = this.likeCount + 1;
+  //   }
+
+  //   this.likeSelected = false;
+  //   this.likeCount = this.likeCount - 1;
+  // }
 
   
   

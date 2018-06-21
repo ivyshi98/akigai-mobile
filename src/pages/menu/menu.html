@@ -6,28 +6,17 @@
   </ion-header>
  
   <ion-content>
+    <br>
+    <br>
     <ion-list>
-        <ion-list-header>
-            Navigation
-          </ion-list-header>
       <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
           <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
           {{ p.title }}
         </button>
     </ion-list>
-
-
-
-  <ion-list>
-    <ion-list-header>
-      Account
-    </ion-list-header>
-    <button ion-item menuClose *ngFor="let p of AccountPages" (click)="openPage(p)">
-      <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
-      {{p.title}}
-    </button>
-  </ion-list>
-  <button ion-button round color = "light" (click) = "navigateToLogin()">Logout</button>
+    <br>
+    <br>
+  <button ion-button round outline class="bigButton" (click) = "navigateToLogin()">Logout</button>
 </ion-content>
 
 </ion-menu>
