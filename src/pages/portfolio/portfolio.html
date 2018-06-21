@@ -10,6 +10,7 @@
 </ion-header>
 
 <ion-content>
+
   <div class="topSection">
     <img class="profpic" src="assets/imgs/profpic.gif">
     <h4>{{userInfo.firstname}} {{userInfo.lastname}}</h4>
@@ -48,6 +49,7 @@
             Donation History
         </ion-card-header>
       <ion-card-content>
+
         <div>
           <ion-list *ngFor="let donation of userDonations" id="list">
             <ion-item>
@@ -98,6 +100,7 @@
     </ion-list>
   </div>
 
+
   <div class="profile" *ngIf="showEditProfile">
     <ion-list no-lines>
       <ion-item>
@@ -135,4 +138,17 @@
       You don't have any badges yet! Get donating to achieve badges.
     </div>
   </div>
+
+<ion-card>
+    <ion-card-header>
+      Donation Breakdown
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #doughnutCanvas></canvas>
+      <button ion-button round (click)="loadChart(this.amountarray,this.charityarray)">Reload</button>
+    
+    </ion-card-content>
+  </ion-card>
+
+
 </ion-content>

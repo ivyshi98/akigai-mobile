@@ -9,6 +9,7 @@
         All
       </ion-segment-button>
       <ion-segment-button (click)="favouriteCharities()" value="favorites">
+
         Favorites
       </ion-segment-button>
     </ion-segment>
@@ -19,14 +20,14 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-<!-- 
+
   <ion-toolbar no-border-top>
     <ion-searchbar color="primary"
                    [(ngModel)]="queryText"
                    (ionInput)="updateSchedule()"
                    placeholder="Search">
     </ion-searchbar>
-  </ion-toolbar> -->
+  </ion-toolbar>
 </ion-header>
    
     <ion-content padding>
@@ -51,7 +52,8 @@
     
         <ion-row no-padding>
           <ion-col>
-            <button ion-button (click) = "addToFavourite(item.id)"clear small icon-start>
+            <button (click) = "addToFavourite(item.id)" ion-button [color]="buttonColor" small icon-start>
+            <!-- <button (click) = "addToFavourite(item.id)" ion-button clear small icon-start> -->
               <ion-icon name='star'></ion-icon>
               Favourite
             </button>
