@@ -24,7 +24,7 @@ export class PaymentMethodsPage {
   address_city: string;
   address_country: string;
   address_zip: string;
-  curency: string;
+  currency: string;
 
   charitydetail: number;
   date: Date;
@@ -35,6 +35,12 @@ export class PaymentMethodsPage {
     public http: Http,
     private alertCtrl: AlertController) {
     this.charitydetail = this.navParams.get("charitydetail");
+  }
+
+  ionViewWillEnter() {
+    if (this.card) {
+      this.card.clear();
+    }
   }
 
   ionViewDidLoad() {
@@ -49,7 +55,7 @@ export class PaymentMethodsPage {
     var city = this.address_city;
     var country = this.address_country;
     var zip = this.address_zip;
-    var curency = this.curency;
+    var currency = this.currency;
 
     if (frequency == null) {
       alert("Please select your donation frequency");
@@ -86,8 +92,8 @@ export class PaymentMethodsPage {
       return false;
     }
 
-    if (curency == null) {
-      alert("Please select a curency");
+    if (currency == null) {
+      alert("Please select a currency");
       return false;
     }
 
@@ -149,7 +155,10 @@ export class PaymentMethodsPage {
             } else {
               console.log(result.token);
               this.stripeTokenHandler(result.token);
-              this.navCtrl.setRoot(PortfolioPage);
+              this.navCtrl.parent.select(2)
+                .then(() => {
+                  this.navCtrl.parent.previousTab().goToRoot();
+                });
               this.donationSuccessful();
               this.createDonation();
             }
@@ -177,7 +186,10 @@ export class PaymentMethodsPage {
             } else {
               // Send the source to your server
               this.stripeSourceHandler(result.source);
-              this.navCtrl.setRoot(PortfolioPage);
+              this.navCtrl.parent.select(2)
+                .then(() => {
+                  this.navCtrl.parent.previousTab().goToRoot();
+                });
               this.donationSuccessful();
               this.createDonation();
             }
@@ -192,7 +204,7 @@ export class PaymentMethodsPage {
         cardholder: this.card_holder,
         paymenttoken: token.id,
         amount: this.amount,
-        curency: this.curency,
+        currency: this.currency,
         date: new Date().toDateString(),
         time: new Date().toTimeString()
       })
@@ -213,7 +225,7 @@ export class PaymentMethodsPage {
         cardholder: this.card_holder,
         paymenttoken: source.id,
         amount: this.amount,
-        curency: this.curency,
+        currency: this.currency,
         date: new Date().toDateString(),
         time: new Date().toTimeString()
       })
