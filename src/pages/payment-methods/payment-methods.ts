@@ -9,6 +9,7 @@ declare var Stripe;
   selector: 'page-payment-methods',
   templateUrl: 'payment-methods.html',
 })
+
 export class PaymentMethodsPage {
 
   stripe = Stripe('pk_test_9xDCoJstNY3XTH470KJmBNzU');
@@ -21,6 +22,9 @@ export class PaymentMethodsPage {
 
   payment: FormGroup;
   public submitted: boolean = false;
+
+  public lottieConfig: Object;
+  private anim: any;
 
   constructor(
     public navCtrl: NavController,
@@ -39,6 +43,12 @@ export class PaymentMethodsPage {
       address_country: ['', Validators.required],
       currency: ['', Validators.required],
     })
+
+    // this.lottieConfig = {
+    //   path: 'assets/animations/lottie/Loading.json',
+    //   autoplay: true,
+    //   loop: true
+    // };
   }
 
   ionViewWillEnter() {
@@ -50,6 +60,10 @@ export class PaymentMethodsPage {
   ionViewDidLoad() {
     this.setupStripe();
   }
+
+  // handleAnimation(anim: any) {
+  //   this.anim = anim;
+  // }
 
   onSubmit() {
     this.submitted = true;
