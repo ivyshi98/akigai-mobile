@@ -4,6 +4,7 @@ import { CharitydetailPage } from '../charitydetail/charitydetail';
 import { Http } from '@angular/http';
 import { CharityfilterPage } from '../charityfilter/charityfilter';
 import { PaymentMethodsPage } from '../payment-methods/payment-methods';
+import { getBaseUrl} from '../../getBaseUrl';
 
 @IonicPage()
 @Component({
@@ -32,7 +33,8 @@ export class CharitylistPage {
       public navParams: NavParams, 
       public http: Http,
       public modalCtrl: ModalController,
-      public alertCtrl: AlertController) {
+      public alertCtrl: AlertController,
+      public getBaseUrl: getBaseUrl) {
       //create instances of charity 
        
     }
@@ -41,7 +43,7 @@ export class CharitylistPage {
 
 
     // getCharities() {
-    //   this.http.get("http://localhost:3000/allCharities?jwt=" + localStorage.getItem("Token"), {
+    //   this.http.get(this.getBaseUrl.getBaseUrl() + "/allCharities?jwt=" + localStorage.getItem("Token"), {
     //     })
     //     .subscribe(
     //       result => {
@@ -57,7 +59,7 @@ export class CharitylistPage {
       allCharities(){
         var favouriteCharityIds = new Set();
 
-      this.http.get("http://localhost:3000/favourite?jwt=" + localStorage.getItem("Token"), {})
+      this.http.get(this.getBaseUrl.getBaseUrl() + "/favourite?jwt=" + localStorage.getItem("Token"), {})
         .subscribe(
           result => {
             let favouriteCharities = result.json();
@@ -66,7 +68,7 @@ export class CharitylistPage {
               favouriteCharityIds.add(charity.id);
             }
 
-            this.http.get("http://localhost:3000/allCharities?jwt=" + localStorage.getItem("Token"), {})
+            this.http.get(this.getBaseUrl.getBaseUrl() + "/allCharities?jwt=" + localStorage.getItem("Token"), {})
               .subscribe((result) => {
                 let charities = result.json();
 
@@ -90,7 +92,7 @@ export class CharitylistPage {
       }
 
       favouriteCharities(){
-        this.http.get("http://localhost:3000/favourite?jwt=" + localStorage.getItem("Token"), {
+        this.http.get(this.getBaseUrl.getBaseUrl() + "/favourite?jwt=" + localStorage.getItem("Token"), {
         })
         .subscribe(
           result => {
@@ -146,7 +148,7 @@ export class CharitylistPage {
        //if yes, delete call to delete from favourite 
            //change button color and text 
            
-           this.http.get("http://localhost:3000/checkfavourite?charityId="+ charityid + "&jwt=" + localStorage.getItem("Token") ,{
+           this.http.get(this.getBaseUrl.getBaseUrl() + "/checkfavourite?charityId="+ charityid + "&jwt=" + localStorage.getItem("Token") ,{
 
           })
           .subscribe(
@@ -261,7 +263,7 @@ export class CharitylistPage {
     }
     
     checkFavourite(charityid:number){
-      this.http.get("http://localhost:3000/checkfavourite?charityId="+ charityid + "&jwt=" + localStorage.getItem("Token") ,{
+      this.http.get(this.getBaseUrl.getBaseUrl() + "/checkfavourite?charityId="+ charityid + "&jwt=" + localStorage.getItem("Token") ,{
 
           })
           .subscribe(
@@ -278,7 +280,7 @@ export class CharitylistPage {
     }
 
     addFavourite(charityid:number){
-       this.http.post("http://localhost:3000/favourite?charityId="+ charityid + "&jwt=" + localStorage.getItem("Token") ,{
+       this.http.post(this.getBaseUrl.getBaseUrl() + "/favourite?charityId="+ charityid + "&jwt=" + localStorage.getItem("Token") ,{
 
        })
        .subscribe(
@@ -293,7 +295,7 @@ export class CharitylistPage {
     };
 
     deleteFavourite(charityid: number) {
-      this.http.delete("http://localhost:3000/deletefavourite?charityId=" + charityid + "&jwt=" + localStorage.getItem("Token"), {
+      this.http.delete(this.getBaseUrl.getBaseUrl() + "/deletefavourite?charityId=" + charityid + "&jwt=" + localStorage.getItem("Token"), {
       })
         .subscribe(
           result => {
