@@ -129,7 +129,7 @@ export class PortfolioPage {
               // return {"charityName": newcharityarray,
               //         "donationAmount": newamountarray};
 
-              
+              this.loadChart(this.amountarray,this.charityarray);
               
  
             },
@@ -172,6 +172,9 @@ export class PortfolioPage {
 
   //amountarray
 
+  refresh(){
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
+  }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad PortfolioPage")
