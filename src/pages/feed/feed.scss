@@ -13,4 +13,12 @@ page-feed {
     .like {
         transform: scale(1.5);
     }
+
+    #noPosts {
+        height: 200px; 
+    }
+
+    .postsDiv {
+        margin-top: 190px;
+    }
 }

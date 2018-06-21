@@ -1,43 +1,60 @@
 <ion-header>
   <ion-navbar>
-      <button ion-button menuToggle>
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
   </ion-navbar>
 </ion-header>
- 
+
 
 
 <ion-content padding>
 
-    <ion-refresher (ionRefresh)="refresh()">
-        <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
+  <ion-refresher (ionRefresh)="refresh()">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
-<ion-list>
-  <ion-card *ngFor="let post of postProperties" class="card">
-    <ion-item>
-      <ion-avatar item-start>
-        <img [src]="post.charityLogo">
-      </ion-avatar>
-      <h2>{{post.charityName}}</h2>
-      <p>{{post.date}}</p>
-    </ion-item>
-    <ion-item>
-      <h4 text-wrap>{{post.text}}</h4>
-      <img [src]="post.img">
-    </ion-item>
-    <ion-item>
-      <ion-row>
-        <ion-col style="text-align: center">
-          <button ion-button color="green" clear><ion-icon name="heart" class="like"></ion-icon></button>
-          {{likeCount}}
-        </ion-col>
-        <ion-col style="text-align: center">
-          <button ion-button clear color="green"><ion-icon name="chatbubbles" class="like"></ion-icon></button>
-        </ion-col>
-      </ion-row>
-    </ion-item>
+  <ion-list>
+    <ion-card *ngFor="let post of postProperties" class="card">
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="post.charityLogo">
+        </ion-avatar>
+        <h2>{{post.charityName}}</h2>
+        <p>{{post.date}}</p>
+      </ion-item>
+      <ion-item>
+        <h4 text-wrap>{{post.text}}</h4>
+        <img [src]="post.img">
+      </ion-item>
+      <ion-item>
+        <ion-row>
+          <ion-col style="text-align: center">
+            <button ion-button color="green" clear>
+              <ion-icon name="heart" class="like"></ion-icon>
+            </button>
+            {{likeCount}}
+          </ion-col>
+          <ion-col style="text-align: center">
+            <button ion-button clear color="green">
+              <ion-icon name="chatbubbles" class="like"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-item>
     </ion-card>
-</ion-list>
+  </ion-list>
+
+  <div *ngIf="noPosts" class="postsDiv">
+    <ion-card>
+          <ion-card-content id="noPosts">
+            <ion-grid style="height: 100%">
+              <ion-row justify-content-center align-items-center style="height: 100%">
+                <h2>You don't have any favorite charities yet! Head to the Explore tab to add favorites.</h2>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+  </div>
+
 </ion-content>
