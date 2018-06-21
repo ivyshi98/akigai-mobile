@@ -142,7 +142,7 @@ export class PortfolioPage {
   loadChart(amountarray:Array<number>,charityarray:Array<string>){
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
       
-      type: 'doughnut',
+      type: 'pie',
       data: {
           labels: charityarray,
           datasets: [{
@@ -180,6 +180,7 @@ export class PortfolioPage {
     console.log("ionViewDidLoad PortfolioPage")
     this.showDonations();
     this.getAmount();
+    //this.navCtrl.setRoot(this.navCtrl.getActive().component);
     
   }
 
