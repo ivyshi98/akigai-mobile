@@ -6,9 +6,8 @@
 
 </ion-header>
 
-
 <ion-content>
-  <form [formGroup]="payment" (ngSubmit)="onSubmit()">
+  <form [formGroup]="payment" (ngSubmit)="onSubmit()" action="/" method="post" id="payment-form">
     <ion-list radio-group formControlName="frequency">
       <ion-item>
         <ion-label>One Time</ion-label>
@@ -19,36 +18,49 @@
         <ion-radio value="monthly" (click)="monthlyTrue()"></ion-radio>
       </ion-item>
     </ion-list>
+    <p ion-text [hidden]="payment.controls.frequency.valid || submitted === false" color="danger" padding-left>
+      Please select a donation frequency
+    </p>
 
     <ion-item>
       <ion-label stacked>Amount</ion-label>
       <ion-input formControlName="amount" type="number"></ion-input>
     </ion-item>
+    <p ion-text [hidden]="payment.controls.amount.valid || submitted === false" color="danger" padding-left>
+      Please enter a donation amount
+    </p>
 
     <ion-item>
       <ion-label stacked>Card Holder</ion-label>
       <ion-input formControlName="card_holder" type="text"></ion-input>
     </ion-item>
+    <p ion-text [hidden]="payment.controls.card_holder.valid || submitted === false" color="danger" padding-left>
+      Please provide a card holder
+    </p>
 
     <ion-item>
       <ion-label stacked>Billing Address</ion-label>
       <ion-input formControlName="address_line1" type="text"></ion-input>
     </ion-item>
+    <p ion-text [hidden]="payment.controls.address_line1.valid || submitted === false" color="danger" padding-left>
+      Please provide a billing address
+    </p>
 
     <ion-item>
       <ion-label stacked>City</ion-label>
       <ion-input formControlName="address_city" type="text"></ion-input>
     </ion-item>
+    <p ion-text [hidden]="payment.controls.address_city.valid || submitted === false" color="danger" padding-left>
+      Please provide a city
+    </p>
 
     <ion-item>
       <ion-label stacked>Country</ion-label>
       <ion-input formControlName="address_country" type="text"></ion-input>
     </ion-item>
-
-    <ion-item>
-      <ion-label stacked>Postal Code</ion-label>
-      <ion-input formControlName="address_zip" type="text"></ion-input>
-    </ion-item>
+    <p ion-text [hidden]="payment.controls.address_country.valid || submitted === false" color="danger" padding-left>
+      Please provide a country
+    </p>
 
     <ion-item>
       <ion-label stacked>State/Province</ion-label>
@@ -66,14 +78,16 @@
         </ion-select>
       </ion-item>
     </ion-list>
+    <p ion-text [hidden]="payment.controls.currency.valid || submitted === false" color="danger" padding-left>
+      Please select a currency
+    </p>
 
-    <form action="/" method="post" id="payment-form">
-      <div class="form-row">
-        <div id="card-element"></div>
-        <div id="card-errors" role="alert"></div>
-      </div>
-      <button ion-button block type="submit">Donate</button>
-    </form>
+    <div class="form-row">
+      <div id="card-element"></div>
+      <div id="card-errors" role="alert"></div>
+    </div>
+
+    <button ion-button block type="submit">Donate</button>
   </form>
 
 </ion-content>

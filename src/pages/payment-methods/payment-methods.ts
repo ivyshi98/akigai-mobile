@@ -1,14 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
-import { PortfolioPage } from '../portfolio/portfolio';
-
-import { DatePipe } from '@angular/common'
-// import { param } from "@loopback/rest";
-// import { verify } from "jsonwebtoken";
-
-import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 declare var Stripe;
 
@@ -23,14 +16,6 @@ export class PaymentMethodsPage {
 
   oneTime: boolean;
   monthly: boolean;
-  frequency: string;
-  amount: number;
-  card_holder: string;
-  address_line1: string;
-  address_city: string;
-  address_country: string;
-  address_zip: string;
-  currency: string;
 
   charitydetail: number;
 
@@ -41,7 +26,6 @@ export class PaymentMethodsPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public http: Http,
-    public datepipe: DatePipe,
     private alertCtrl: AlertController,
     private formBuilder: FormBuilder) {
     this.charitydetail = this.navParams.get("charitydetail");
@@ -53,7 +37,6 @@ export class PaymentMethodsPage {
       address_line1: ['', Validators.required],
       address_city: ['', Validators.required],
       address_country: ['', Validators.required],
-      address_zip: ['', Validators.required],
       currency: ['', Validators.required],
     })
   }
@@ -72,7 +55,7 @@ export class PaymentMethodsPage {
     this.submitted = true;
 
     if (this.payment.valid) {
-      this.createDonation();
+      console.log(this.payment.value);
     }
   }
 
@@ -121,7 +104,6 @@ export class PaymentMethodsPage {
     form.addEventListener('submit', event => {
       event.preventDefault();
 
-      // this.stripe.createToken(this.card) this.stripe.createSource(this.card)
       if (this.oneTime) {
         this.stripe.createToken(this.card)
           .then(result => {
@@ -135,6 +117,7 @@ export class PaymentMethodsPage {
                 .then(() => {
                   this.navCtrl.parent.previousTab().goToRoot();
                 });
+
               this.donationSuccessful();
               this.createDonation();
             }
@@ -164,10 +147,10 @@ export class PaymentMethodsPage {
   stripeTokenHandler(token) {
     this.http
       .post("http://localhost:3000/payment?jwt=" + localStorage.getItem("Token"), {
-        cardholder: this.card_holder,
+        cardholder: this.payment.get('card_holder').value,
         paymenttoken: token.id,
-        amount: this.amount,
-        currency: this.currency,
+        amount: this.payment.get('amount').value,
+        currency: this.payment.get('currency').value,
         date: new Date().toDateString(),
         time: new Date().toTimeString()
       })
@@ -185,10 +168,10 @@ export class PaymentMethodsPage {
   stripeSourceHandler(source) {
     this.http
       .post("http://localhost:3000/payment?jwt=" + localStorage.getItem("Token"), {
-        cardholder: this.card_holder,
+        cardholder: this.payment.get('card_holder').value,
         paymenttoken: source.id,
-        amount: this.amount,
-        currency: this.currency,
+        amount: this.payment.get('amount').value,
+        currency: this.payment.get('currency').value,
         date: new Date().toDateString(),
         time: new Date().toTimeString()
       })
@@ -206,7 +189,7 @@ export class PaymentMethodsPage {
   //create a donation
   createDonation() {
     this.http.post("http://localhost:3000/createDonation?charityId=" + this.charitydetail + "&jwt=" + localStorage.getItem("Token"), {
-      amount: this.amount,
+      amount: this.payment.get('amount').value,
       date: new Date().toDateString(),
     })
 
@@ -219,7 +202,6 @@ export class PaymentMethodsPage {
           console.log(error);
         }
       );
-
   };
 
   donationSuccessful() {
