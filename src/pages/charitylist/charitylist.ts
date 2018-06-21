@@ -310,4 +310,3 @@ export class CharitylistPage {
       this.allCharities();
     }
 }
-  
