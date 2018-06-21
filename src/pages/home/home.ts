@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { RegistrationPage } from '../registration/registration';
-import { FeedPage } from '../feed/feed';
 import { MenuPage } from '../menu/menu';
-import { PaymentMethodsPage } from '../payment-methods/payment-methods';
 
 @Component({
   selector: 'page-home',
@@ -13,11 +11,11 @@ import { PaymentMethodsPage } from '../payment-methods/payment-methods';
 export class HomePage {
 
   constructor(public navCtrl: NavController) {
-   if (localStorage.getItem("Token")) {
-       this.navCtrl.setRoot(MenuPage);
+    if (localStorage.getItem("Token")) {
+      this.navCtrl.setRoot(MenuPage);
+    }
   }
-}
- 
+
   navLogin() {
     this.navCtrl.push(LoginPage);
   }

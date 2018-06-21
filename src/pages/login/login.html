@@ -1,28 +1,26 @@
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
-<ion-content>
+<ion-content text-center>
     <h1 class="title">Sign In</h1>
 
-    <ion-list class="list">
+    <form [formGroup]="login" (ngSubmit)="onSubmit()">
         <ion-item>
-            <ion-input type="text" placeholder="Username" [(ngModel)]="username" type="text"></ion-input>
+            <ion-input placeholder="Username" formControlName="username" type="text"></ion-input>
         </ion-item>
+        <p ion-text [hidden]="login.controls.username.valid || submitted === false" color="danger" padding-left>
+            Username required
+        </p>
 
         <ion-item>
-                <ion-input type="text" placeholder="Password" [(ngModel)]="password"type="Password"></ion-input>
-            </ion-item>
-    </ion-list>
+            <ion-input placeholder="Password" formControlName="password" type="Password"></ion-input>
+        </ion-item>
+        <p ion-text [hidden]="login.controls.password.valid || submitted === false" color="danger" padding-left>
+            Password required
+        </p>
 
-    <ion-grid text-center>
-        <ion-row>
-          <ion-col>
-              <button class="bigButton" ion-button round outline large (click)="navToFeed()">Sign In</button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-              <button class="cancel" ion-button round clear small (click)="navHome()">Cancel</button>
-          </ion-col>
-        </ion-row>
-      </ion-grid> 
+        <button class="bigButton" ion-button round outline large type="submit">Sign In</button>
+    </form>
+
+    <button class="cancel" ion-button round clear small (click)="navHome()">Cancel</button>
+
 </ion-content>

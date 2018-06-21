@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
+import { Users } from '../../models/users';
 import { Chart } from 'chart.js';
-
 
 @IonicPage()
 @Component({
@@ -13,6 +13,19 @@ export class PortfolioPage {
 
   userDonations: Array<any> = [];
   sum: number;
+
+  showPortfolio: boolean;
+  showProfile: boolean;
+  showEditProfile: boolean;
+  userInfo: Users = new Users;
+  public editedUsername: string;
+  public editedPassword: string;
+  public editedEmail: string;
+  public editedFirstname: string;
+  public editedLastname: string;
+  public menu: string;
+  public showBadge1: boolean;
+
   numberCharities: number;
   showSelected1: boolean;
   first1: boolean;
@@ -22,6 +35,7 @@ export class PortfolioPage {
   public charityarray: Array<string> = [];
   public amountarray: Array<number> = [];
 
+
   @ViewChild('doughnutCanvas') doughnutCanvas;
 
 
@@ -30,10 +44,13 @@ export class PortfolioPage {
   //2. when data is passed in, change labels and data of the graph dynamically
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
-    this.showSelected1 = false;
-    this.first1 = true;
-    this.showSelected2 = false;
-    this.first2 = true;
+    this.showProfile = false;
+    this.showPortfolio = false;
+    this.showEditProfile = false;
+    this.showDonations();
+    this.menu = "portfolio";
+    this.portfolio();
+    this.showUserInfo();
   }
 
   showDonations() {
@@ -64,26 +81,70 @@ export class PortfolioPage {
     );
   }
 
-  toggleContent1() {
-    if (this.first1) {
-      this.showSelected1 = true;
-      this.first1 = !this.first1;
+  showUserInfo(){
+    this.http.get("http://localhost:3000/User?jwt=" + localStorage.getItem("Token"),{
+      })
+      .subscribe(
+        result => {
+          this.userInfo = result.json().user;
+          console.log (this.userInfo);
+        },
+        error => {
+          console.log(error);
+        }
+      );
     }
-    else {
-      this.showSelected1 = false;
-      this.first1 = !(this.first1);
-    }
+
+  editProfile() {
+    this.showEditProfile = true;
+    this.showPortfolio = false;
+    this.showProfile = false;
   }
 
-  toggleContent2() {
-    if (this.first2) {
-      this.showSelected2 = true;
-      this.first2 = !this.first2;
-    }
-    else {
-      this.showSelected2 = false;
-      this.first2 = !(this.first2);
-    }
+  badges() {
+    this.showEditProfile = false;
+    this.showPortfolio = false;
+    this.showProfile = false;
+  }
+
+  portfolio() {
+    this.showPortfolio = true;
+    this.showProfile = false;
+    this.showEditProfile = false;
+  }
+  
+  profile() {
+    this.showUserInfo();
+    this.showProfile = true;
+    this.showPortfolio = false;
+    this.showEditProfile = false;
+  }
+
+  submit() {
+    this.changeUserInfo();
+    this.profile();
+  }
+
+  changeUserInfo() {
+    this.http.patch("http://localhost:3000/updateUser?jwt=" + localStorage.getItem("Token"), {
+      username: this.editedUsername,
+      password: this.editedPassword,
+      firstname: this.editedFirstname,
+      lastname: this.editedLastname,
+      email: this.editedEmail
+    })
+
+    .subscribe(
+      result => {
+        console.log(result);
+
+        var Usertoken = result.json();
+        localStorage.setItem("Token", Usertoken.token);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   //charityarray
@@ -178,11 +239,13 @@ export class PortfolioPage {
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad PortfolioPage")
+
     this.showDonations();
     this.getAmount();
     //this.navCtrl.setRoot(this.navCtrl.getActive().component);
     
   }
+
 
 }
 
