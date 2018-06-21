@@ -2,15 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http'
 import { PaymentMethodsPage } from '../payment-methods/payment-methods';
-import { CharitylistPage } from '../charitylist/charitylist';
-
-
-/**
- * Generated class for the CharitydetailPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -19,18 +10,15 @@ import { CharitylistPage } from '../charitylist/charitylist';
 })
 export class CharitydetailPage {
   
-
   public charity:any;
   public charitydetail:any;
   public nextId:any;
-
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   public http: Http) {
     this.charitydetail = this.navParams.get("charitydetail");
   }
 
-  
   navigateToNext(currentCharityId:number){
     // this.navCtrl.setRoot(CharitylistPage);
     this.navCtrl.push(CharitydetailPage,{
@@ -69,7 +57,6 @@ export class CharitydetailPage {
       );
     };
 
-  
   backToCharitylist(){
   }
 

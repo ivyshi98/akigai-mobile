@@ -14,11 +14,11 @@
       </ion-segment-button>
     </ion-segment>
 
-    <ion-buttons end>
+    <!-- <ion-buttons end>
       <button ion-button icon-only (click)="presentFilter()">
         <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-navbar>
 
 </ion-header>
@@ -33,7 +33,7 @@
 
       <ion-card ion-item *ngFor="let item of charities">
     
-         <img src="../../assets/imgs/{{item.name}}.png"/> 
+         <img ion-img height= "20%" width = "20%" src="../../assets/imgs/{{item.name}}.png"/> 
     
         <ion-card-content>
           <ion-card-title>
@@ -44,30 +44,47 @@
           </p>
         </ion-card-content>
     
+       
+       
+          <ion-grid>
         <ion-row no-padding>
-          <ion-col>
-            <button (click) = "addToFavourite(item.id)" ion-button [color]="buttonColor" small icon-start>
+          <ion-col text-center>
+           
+            <button
+              class= 'roundButton'
+              id="{{'favorite-button-' + item.id}}"
+              (click) = "addToFavourite(item.id)"
+              round
+              ion-button
+              [attr.color]="item.favourited ? 'primary' : '#000000'"
+              [outline]="!item.favourited"
+              small
+              icon-start
+              >
             <!-- <button (click) = "addToFavourite(item.id)" ion-button clear small icon-start> -->
-              <ion-icon name='star'></ion-icon>
-              Favourite
+              <!-- <ion-icon name='star'></ion-icon> -->
+              {{item.favourited ? 'Favourited' : 'Favourite'}}
+              <!-- Favourite -->
             </button>
           </ion-col>
           <ion-col text-center>
-            <button ion-button (click)="navigateToPayment(item.id)" clear small icon-start>
+
+            <button class= 'roundButton'ion-button (click)="navigateToPayment(item.id)" round outline ion-button small icon-start>
                 <ion-icon name='logo-usd'></ion-icon>
               Donate
             </button>
           </ion-col>
-          <ion-col text-right>
-            <button ion-button (click)="navigateToCharitydetail(item.id)" clear small icon-start>
+          <ion-col text-center> 
+
+            <button class= 'roundButton' ion-button (click)="navigateToCharitydetail(item.id)" outline round outline ion-button small icon-start>
               <ion-icon name='share-alt'></ion-icon>
               Details
             </button>
           </ion-col>
         </ion-row>
-    
-      </ion-card>
-    </ion-content>
+      </ion-grid>
+    </ion-card>
+  </ion-content>
     
     
     

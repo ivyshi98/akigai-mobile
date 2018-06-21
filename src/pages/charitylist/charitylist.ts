@@ -15,7 +15,8 @@ export class CharitylistPage {
     public charities: Array<Object> = [];
     public charity: any;
     public favouriteCharity: any;
-    public buttonColor: string = 'primary';
+    public charityById = {};
+
 
     @ViewChild('scheduleList', { read: List }) charityList: List;
 
@@ -39,25 +40,48 @@ export class CharitylistPage {
    
 
 
-    getCharities() {
-      this.http.get("http://localhost:3000/allCharities?jwt=" + localStorage.getItem("Token"), {
-        })
-        .subscribe(
-          result => {
-            this.charities = result.json();
-          },
-          error => {
-            console.log(error);
-          }
-        );
-      };
+    // getCharities() {
+    //   this.http.get("http://localhost:3000/allCharities?jwt=" + localStorage.getItem("Token"), {
+    //     })
+    //     .subscribe(
+    //       result => {
+    //         this.charities = result.json();
+    //         console.log(this.charities);
+    //       },
+    //       error => {
+    //         console.log(error);
+    //       }
+    //     );
+    //   };
 
       allCharities(){
-        this.http.get("http://localhost:3000/allCharities?jwt=" + localStorage.getItem("Token"), {
-        })
+        var favouriteCharityIds = new Set();
+
+      this.http.get("http://localhost:3000/favourite?jwt=" + localStorage.getItem("Token"), {})
         .subscribe(
           result => {
-            this.charities = result.json();
+            let favouriteCharities = result.json();
+
+            for (let charity of favouriteCharities) {
+              favouriteCharityIds.add(charity.id);
+            }
+
+            this.http.get("http://localhost:3000/allCharities?jwt=" + localStorage.getItem("Token"), {})
+              .subscribe((result) => {
+                let charities = result.json();
+
+                for (let charity of charities) {
+                  if (favouriteCharityIds.has(charity.id)) {
+                    charity.favourited = true;
+                  } else {
+                    charity.favourited = false;
+                  }
+
+                  this.charityById[charity.id] = charity;
+                }
+
+                this.charities = charities;
+              })
           },
           error => {
             console.log(error);
@@ -70,7 +94,11 @@ export class CharitylistPage {
         })
         .subscribe(
           result => {
-            this.charities = result.json();
+            let charities = result.json();
+            for (let charity of charities) {
+              charity.favourited = true;
+            }
+            this.charities = charities;
           },
           error => {
             console.log(error);
@@ -126,11 +154,78 @@ export class CharitylistPage {
              console.log(result);
              var checkResult = result.json().favorite;
              if (checkResult == false){
-              this.addFavourite(charityid);
-              this.buttonColor = 'green';
+              
+              //document.getElementById(`favorite-button-${charityid}`).innerText = 'Favourite';
+              let alert = this.alertCtrl.create({
+                title: 'Add to Favourite',
+                message: 'Do you want to add this charity to favourite?',
+                buttons: [
+                  {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    handler: () => {
+                      console.log('Cancel clicked');
+                    }
+                  },
+                  {
+                    text: 'Confirm',
+                    handler: () => {
+                      console.log('Add clicked');
+                      this.charityById[charityid].favourited = true;
+                      this.addFavourite(charityid);
+                    }
+                  }
+                ]
+              });
+              alert.present();
+              
+              
+              //this.buttonColor = 'green';
+              // let alert = this.alertCtrl.create({
+              //   title: 'Favorite Added',
+              //   buttons: [{
+              //     text: 'OK',
+              //   }]
+              // });
+              // now present the alert on top of all other content
+              // alert.present();
              }else{
-              this.deleteFavourite(charityid);
-              this.buttonColor = 'primary';
+              
+              //document.getElementById(`favorite-button-${charityid}`).innerText = 'Favourited';
+              let alert = this.alertCtrl.create({
+                title: 'Delete from Favourite',
+                message: 'This charity has been added. Do you want to delete from favourite?',
+                buttons: [
+                  {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    handler: () => {
+                      console.log('Cancel clicked');
+                    }
+                  },
+                  {
+                    text: 'Confirm',
+                    handler: () => {
+              
+                      console.log('Delete clicked');
+                      this.charityById[charityid].favourited = false;
+                      this.deleteFavourite(charityid);
+                    }
+                  }
+                ]
+              });
+              alert.present();
+    
+             
+              //this.buttonColor = 'primary';
+              // let alert = this.alertCtrl.create({
+              //   title: 'Favorite Deleted',
+              //   buttons: [{
+              //     text: 'OK',
+              //   }]
+              // });
+              // now present the alert on top of all other content
+              // alert.present();
             }
 
            },
@@ -138,19 +233,32 @@ export class CharitylistPage {
              console.log(error);
            }
          );
-
-           //show alert
-          let alert = this.alertCtrl.create({
-            title: 'Favorite Added',
-            buttons: [{
-              text: 'OK',
-            }]
-          });
-          // now present the alert on top of all other content
-          alert.present();
-
       }
 
+   
+
+    deleteConfirm(){
+      let alert = this.alertCtrl.create({
+        title: 'Delete from Favourite',
+        message: 'This charity has been added. Do you want to delete from favourite?',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Confirm',
+            handler: () => {
+              console.log('Delete clicked');
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
     
     checkFavourite(charityid:number){
       this.http.get("http://localhost:3000/checkfavourite?charityId="+ charityid + "&jwt=" + localStorage.getItem("Token") ,{
@@ -199,8 +307,6 @@ export class CharitylistPage {
 
     ionViewDidLoad(){
       console.log('ionViewDidLoad CharitylistPage');
-      this.getCharities();
-      }
-
+      this.allCharities();
     }
-  
+}
