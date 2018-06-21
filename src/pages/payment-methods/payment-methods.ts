@@ -34,13 +34,28 @@ export class PaymentMethodsPage {
 
   charitydetail: number;
 
+  payment: FormGroup;
+  public submitted: boolean = false;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public http: Http,
     public datepipe: DatePipe,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController,
+    private formBuilder: FormBuilder) {
     this.charitydetail = this.navParams.get("charitydetail");
+
+    this.payment = this.formBuilder.group({
+      frequency: ['', Validators.required],
+      amount: ['', Validators.required],
+      card_holder: ['', Validators.required],
+      address_line1: ['', Validators.required],
+      address_city: ['', Validators.required],
+      address_country: ['', Validators.required],
+      address_zip: ['', Validators.required],
+      currency: ['', Validators.required],
+    })
   }
 
   ionViewWillEnter() {
@@ -53,57 +68,12 @@ export class PaymentMethodsPage {
     this.setupStripe();
   }
 
-  validatePayment() {
-    var frequency = this.frequency;
-    var amount = this.amount;
-    var name = this.card_holder;
-    var address = this.address_line1;
-    var city = this.address_city;
-    var country = this.address_country;
-    var zip = this.address_zip;
-    var currency = this.currency;
+  onSubmit() {
+    this.submitted = true;
 
-    if (frequency == null) {
-      alert("Please select your donation frequency");
-      return false;
+    if (this.payment.valid) {
+      this.createDonation();
     }
-
-    if (amount == null) {
-      alert("Must input a donation amount");
-      return false;
-    }
-
-    if (name == null) {
-      alert("Must provide name on card");
-      return false;
-    }
-
-    if (address == null) {
-      alert("Must provide a billing address");
-      return false;
-    }
-
-    if (city == null) {
-      alert("Must provide a city");
-      return false;
-    }
-
-    if (country == null) {
-      alert("Must provide a country");
-      return false;
-    }
-
-    if (zip == null) {
-      alert("Must provide a postal code");
-      return false;
-    }
-
-    if (currency == null) {
-      alert("Please select a currency");
-      return false;
-    }
-
-    this.createDonation();
   }
 
   oneTimeTrue() {
@@ -170,19 +140,6 @@ export class PaymentMethodsPage {
             }
           })
       } else {
-        // var ownerInfo = {
-        //   owner: {
-        //     name: this.name,
-        //     address: {
-        //       line1: this.address_line1,
-        //       city: this.address_city,
-        //       postal_code: this.address_zip,
-        //       country: this.address_country,
-        //     },
-        //     //email: 'jenny.rosen@example.com'
-        //   },
-        // };
-
         this.stripe.createSource(this.card)
           .then(result => {
             if (result.error) {
@@ -246,24 +203,11 @@ export class PaymentMethodsPage {
         });
   }
 
-  donationSuccessful() {
-    let alert = this.alertCtrl.create({
-      title: 'Donation Successful',
-      subTitle: 'Thank you for donating!',
-      buttons: ['Ok']
-    });
-    console.log('Donate clicked');
-
-    alert.present();
-  }
-
-
   //create a donation
   createDonation() {
-
-    this.http.post("http://localhost:3000/createDonation?charityId="+ this.charitydetail + "&jwt=" + localStorage.getItem("Token"),{
-       amount: this.amount,
-       date: new Date().toDateString(),
+    this.http.post("http://localhost:3000/createDonation?charityId=" + this.charitydetail + "&jwt=" + localStorage.getItem("Token"), {
+      amount: this.amount,
+      date: new Date().toDateString(),
     })
 
       .subscribe(
@@ -277,6 +221,17 @@ export class PaymentMethodsPage {
       );
 
   };
+
+  donationSuccessful() {
+    let alert = this.alertCtrl.create({
+      title: 'Donation Successful',
+      subTitle: 'Thank you for donating!',
+      buttons: ['Ok']
+    });
+    console.log('Donate clicked');
+
+    alert.present();
+  }
 }
 
 
