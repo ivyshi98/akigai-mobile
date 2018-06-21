@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavParams, MenuController } from 'ionic-angular';
 import { CharitylistPage } from '../charitylist/charitylist';
 import { PortfolioPage } from '../portfolio/portfolio';
 import { FeedPage } from '../feed/feed';
@@ -11,9 +11,11 @@ import { FeedPage } from '../feed/feed';
 })
 export class TabsPage {
  
-  FeedRoot: any = FeedPage
-  CharitylistRoot: any = CharitylistPage;
+  
   PortfolioRoot: any = PortfolioPage;
+  CharitylistRoot: any = CharitylistPage;
+  FeedRoot: any = FeedPage;
+  
   myIndex: number;
 
  

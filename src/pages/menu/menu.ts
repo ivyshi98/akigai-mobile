@@ -1,11 +1,9 @@
 import { TabsPage } from './../tabs/tabs';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Nav, MenuController } from 'ionic-angular';
-import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
  
 export interface PageInterface {
-
 
   title: string;
   pageName: string;
@@ -28,9 +26,11 @@ export class MenuPage {
   @ViewChild(Nav) nav: Nav;
  
   pages: PageInterface[] = [
-    { title: 'Feed', pageName: 'TabsPage', component: TabsPage, tabComponent: 'FeedPage', index: 0, icon: 'home' },
+   
+    { title: 'Portfolio', pageName: 'TabsPage', component: TabsPage, tabComponent: 'PortfolioPage', index: 0, icon: 'folder'},
     { title: 'Explore Charities', pageName: 'TabsPage', component: TabsPage, tabComponent: 'CharitylistPage', index: 1, icon: 'globe' },
-    { title: 'Portfolio', pageName: 'TabsPage', component: TabsPage, tabComponent: 'PortfolioPage', index: 2, icon: 'folder'},
+    { title: 'Feed', pageName: 'TabsPage', component: TabsPage, tabComponent: 'FeedPage', index: 2, icon: 'home' },
+  
     
     
 

@@ -16,7 +16,9 @@ page-portfolio {
     .button {
         color: map-get($colors, green);
     }
-
+    .loadButton{
+        margin:20px;
+    }
     .topSection {
         position: absolute;
         left: 0;

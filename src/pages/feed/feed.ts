@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
 import { Http } from '@angular/http';
-import { Posts } from '../../models/posts';
 import { MenuController } from 'ionic-angular';
 
 @IonicPage()
@@ -29,7 +27,7 @@ export class FeedPage {
 
   viewPage() {
     this.http.get("http://localhost:3000/posts?jwt=" + localStorage.getItem("Token"), {
-      })
+    })
       .subscribe(
         result => {
           console.log(result);
@@ -42,12 +40,12 @@ export class FeedPage {
           console.log(error);
         }
       );
-    };
+  };
 
-  openMenu(){
+  openMenu() {
     this.menuCtrl.open()
   }
-  
+
   // noPosts() {
   //   var query = ('div.box');
   //   if (this.postNumber == 0) {
@@ -59,6 +57,7 @@ export class FeedPage {
     console.log('ionViewDidLoad FeedPage');
     this.token = localStorage.getItem("Token");
   }
+
 
   refresh() {
     this.navCtrl.setRoot(this.navCtrl.getActive().component);
@@ -87,4 +86,5 @@ export class FeedPage {
 
   
   
+
 }

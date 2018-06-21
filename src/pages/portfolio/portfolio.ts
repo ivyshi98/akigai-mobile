@@ -2,8 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Users } from '../../models/users';
-import {HomePage } from '../../pages/home/home';
-
 import { Chart } from 'chart.js';
 
 
@@ -194,8 +192,10 @@ export class PortfolioPage {
               // return {"charityName": newcharityarray,
               //         "donationAmount": newamountarray};
 
+
               
             this.loadChart(this.amountarray,this.charityarray);
+
  
             },
             error => {
@@ -207,7 +207,7 @@ export class PortfolioPage {
   loadChart(amountarray:Array<number>,charityarray:Array<string>){
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
       
-      type: 'doughnut',
+      type: 'pie',
       data: {
           labels: charityarray,
           datasets: [{
@@ -237,16 +237,14 @@ export class PortfolioPage {
 
   //amountarray
 
+  refresh(){
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
+  }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad PortfolioPage")
     // this.loadChart(this.amountarray, this.charityarray);
   }
-
-  refresh() {
-    this.navCtrl.setRoot(this.navCtrl.getActive().component);
-  }
-
 
 }
 
