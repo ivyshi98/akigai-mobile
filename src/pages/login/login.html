@@ -1,9 +1,7 @@
-<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-
 <ion-content text-center>
     <h1 class="title">Sign In</h1>
 
-    <form [formGroup]="login" (ngSubmit)="onSubmit()">
+    <form [formGroup]="login" (ngSubmit)="onSubmit()" class="form">
         <ion-item>
             <ion-input placeholder="Username" formControlName="username" type="text"></ion-input>
         </ion-item>
@@ -11,7 +9,7 @@
             Username required
         </p>
 
-        <ion-item>
+        <ion-item class="loginForm">
             <ion-input placeholder="Password" formControlName="password" type="Password"></ion-input>
         </ion-item>
         <p ion-text [hidden]="login.controls.password.valid || submitted === false" color="danger" padding-left>
@@ -20,7 +18,5 @@
 
         <button class="bigButton" ion-button round outline large type="submit">Sign In</button>
     </form>
-
     <button class="cancel" ion-button round clear small (click)="navHome()">Cancel</button>
-
 </ion-content>

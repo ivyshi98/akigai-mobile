@@ -12,10 +12,9 @@ page-registration {
     }
 
     .title {
-        margin-left: 40px;
-        font-family: 'Raleway', sans-serif;
-        font-size: 60px;
-
+        font-family: 'Poiret One', cursive;
+        font-size: 40px;
+        margin-top: 10vw;
     }
 
     .list {
@@ -27,6 +26,12 @@ page-registration {
 
     .cancel {
         color: map-get($colors, green);
+    }
+
+    .form {
+        width: 80%;
+        text-align: center;
+        margin: 60px auto;
     }
 
 }
