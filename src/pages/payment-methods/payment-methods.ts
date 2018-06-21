@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoadingController } from 'ionic-angular';
 
 declare var Stripe;
 
@@ -9,6 +10,7 @@ declare var Stripe;
   selector: 'page-payment-methods',
   templateUrl: 'payment-methods.html',
 })
+
 export class PaymentMethodsPage {
 
   stripe = Stripe('pk_test_9xDCoJstNY3XTH470KJmBNzU');
@@ -22,11 +24,15 @@ export class PaymentMethodsPage {
   payment: FormGroup;
   public submitted: boolean = false;
 
+  public lottieConfig: Object;
+  private anim: any;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public http: Http,
     private alertCtrl: AlertController,
+    public loadingCtrl: LoadingController,
     private formBuilder: FormBuilder) {
     this.charitydetail = this.navParams.get("charitydetail");
 
@@ -39,6 +45,12 @@ export class PaymentMethodsPage {
       address_country: ['', Validators.required],
       currency: ['', Validators.required],
     })
+
+    // this.lottieConfig = {
+    //   path: 'assets/animations/lottie/Loading.json',
+    //   autoplay: true,
+    //   loop: true
+    // };
   }
 
   ionViewWillEnter() {
@@ -50,6 +62,10 @@ export class PaymentMethodsPage {
   ionViewDidLoad() {
     this.setupStripe();
   }
+
+  // handleAnimation(anim: any) {
+  //   this.anim = anim;
+  // }
 
   onSubmit() {
     this.submitted = true;
@@ -104,6 +120,9 @@ export class PaymentMethodsPage {
     form.addEventListener('submit', event => {
       event.preventDefault();
 
+      let loading = this.loadingCtrl.create({ content: "Authenticating payment, please wait..." });
+      loading.present();
+
       if (this.oneTime) {
         this.stripe.createToken(this.card)
           .then(result => {
@@ -117,7 +136,7 @@ export class PaymentMethodsPage {
                 .then(() => {
                   this.navCtrl.parent.previousTab().goToRoot();
                 });
-
+              loading.dismissAll();
               this.donationSuccessful();
               this.createDonation();
             }
@@ -136,6 +155,7 @@ export class PaymentMethodsPage {
                 .then(() => {
                   this.navCtrl.parent.previousTab().goToRoot();
                 });
+              loading.dismissAll();
               this.donationSuccessful();
               this.createDonation();
             }
