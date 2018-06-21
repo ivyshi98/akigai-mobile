@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoadingController } from 'ionic-angular';
 
 declare var Stripe;
 
@@ -31,6 +32,7 @@ export class PaymentMethodsPage {
     public navParams: NavParams,
     public http: Http,
     private alertCtrl: AlertController,
+    public loadingCtrl: LoadingController,
     private formBuilder: FormBuilder) {
     this.charitydetail = this.navParams.get("charitydetail");
 
@@ -118,6 +120,9 @@ export class PaymentMethodsPage {
     form.addEventListener('submit', event => {
       event.preventDefault();
 
+      let loading = this.loadingCtrl.create({ content: "Authenticating payment, please wait..." });
+      loading.present();
+
       if (this.oneTime) {
         this.stripe.createToken(this.card)
           .then(result => {
@@ -131,7 +136,7 @@ export class PaymentMethodsPage {
                 .then(() => {
                   this.navCtrl.parent.previousTab().goToRoot();
                 });
-
+              loading.dismissAll();
               this.donationSuccessful();
               this.createDonation();
             }
@@ -150,6 +155,7 @@ export class PaymentMethodsPage {
                 .then(() => {
                   this.navCtrl.parent.previousTab().goToRoot();
                 });
+              loading.dismissAll();
               this.donationSuccessful();
               this.createDonation();
             }
