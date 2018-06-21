@@ -18,8 +18,6 @@ declare var Stripe;
 })
 export class PaymentMethodsPage {
 
-  date: Date = new Date();
-
   stripe = Stripe('pk_test_9xDCoJstNY3XTH470KJmBNzU');
   card: any;
 
@@ -35,12 +33,6 @@ export class PaymentMethodsPage {
   currency: string;
 
   charitydetail: number;
-
-  currency: string;
-  oneTime: boolean;
-  monthly: boolean;
-  date: Date;
-
 
   constructor(
     public navCtrl: NavController,
@@ -269,11 +261,9 @@ export class PaymentMethodsPage {
   //create a donation
   createDonation() {
 
-    let latest_date = this.datepipe.transform(this.date, 'MM-dd-yyyy');
     this.http.post("http://localhost:3000/createDonation?charityId="+ this.charitydetail + "&jwt=" + localStorage.getItem("Token"),{
        amount: this.amount,
-       date: latest_date,
-
+       date: new Date().toDateString(),
     })
 
       .subscribe(
