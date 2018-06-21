@@ -9,23 +9,41 @@
   
   <ion-content padding>
     <div class = "profileimg">
-      <ion-img height= "150px" width = "150px" src="../../assets/imgs/{{charity?.name}}.png"></ion-img>
+      <ion-img height= "40%" width = "40%" src="../../assets/imgs/{{charity?.name}}.png"></ion-img>
     </div>
   
-      <p class = "info">
+      <p class = "mission">
+          <ion-title>Mission</ion-title>
          {{charity?.mission}}
-         <br>
       </p>
+      <br>
+
+      <p class = "project">
+          <ion-title>Project</ion-title>
+         <!-- {{charity?.project}} -->
+         
+         WOOF Project a dynamic ‘pop — up’ dog adoption initiative that aims to accelerate dog adoption through innovative design, creative marketing, and providing an unrivalled dog adoption experience.   All the dogs originate from existing shelters and WOOF Project provides the exposure needed in order to find a forever home.
+
+      </p>
+      <br>
+
+      <p class = "contact">
+          <ion-title>Contact</ion-title>
+          Phone: 081 347 0784
+          <br>
+          Email: info@oscarsarc.org
+      </p>
+      <br>
   
-    <p class = "topbar">
-        <button ion-button (click)= "navigateToPayment(charity.id)" color = "danger">Donate</button>
-      
-        <button ion-button (click) = "navigateToPrevious(charity.id)" color="light" icon-start>
+   
+        <button ion-button (click)= "navigateToPayment(charity.id)" color = "danger" round>Donate</button>
+        <br>
+        <button round ion-button (click) = "navigateToPrevious(charity.id)" color="light" icon-start>
         <ion-icon name='arrow-back'></ion-icon>
         Previous
       </button>
-  
-      <button ion-button (click) = "navigateToNext(charity.id)" color="light" icon-end>
+      <br>
+      <button round ion-button (click) = "navigateToNext(charity.id)" color="light" icon-end>
         Next
         <ion-icon name='arrow-forward'></ion-icon>
       </button>
@@ -34,6 +52,15 @@
           <ion-icon name="star"></ion-icon>
           Save
         </button> -->
-    </p>
+
+    <ion-fab bottom right #fab> 
+        <button ion-fab><ion-icon name="share"></ion-icon></button>
+        <ion-fab-list side="top">
+          <button ion-fab color="vimeo" (click)="openSocial('Vimeo', fab)"><ion-icon name="logo-vimeo"></ion-icon></button>
+          <button ion-fab color="google" (click)="openSocial('Google+', fab)"><ion-icon name="logo-googleplus"></ion-icon></button>
+          <button ion-fab color="twitter" (click)="openSocial('Twitter', fab)"><ion-icon name="logo-twitter"></ion-icon></button>
+          <button ion-fab color="facebook" (click)="openSocial('Facebook', fab)"><ion-icon name="logo-facebook"></ion-icon></button>
+        </ion-fab-list>
+      </ion-fab>
     
   </ion-content>

@@ -113,7 +113,7 @@ export class PaymentMethodsPage {
             } else {
               console.log(result.token);
               this.stripeTokenHandler(result.token);
-              this.navCtrl.parent.select(2)
+              this.navCtrl.parent.select(0)
                 .then(() => {
                   this.navCtrl.parent.previousTab().goToRoot();
                 });
@@ -132,7 +132,7 @@ export class PaymentMethodsPage {
             } else {
               // Send the source to your server
               this.stripeSourceHandler(result.source);
-              this.navCtrl.parent.select(2)
+              this.navCtrl.parent.select(0)
                 .then(() => {
                   this.navCtrl.parent.previousTab().goToRoot();
                 });

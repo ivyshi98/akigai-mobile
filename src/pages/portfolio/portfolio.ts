@@ -190,7 +190,7 @@ export class PortfolioPage {
               // return {"charityName": newcharityarray,
               //         "donationAmount": newamountarray};
 
-              
+              this.loadChart(this.amountarray,this.charityarray);
               
  
             },
@@ -203,7 +203,7 @@ export class PortfolioPage {
   loadChart(amountarray:Array<number>,charityarray:Array<string>){
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
       
-      type: 'doughnut',
+      type: 'pie',
       data: {
           labels: charityarray,
           datasets: [{
@@ -233,12 +233,16 @@ export class PortfolioPage {
 
   //amountarray
 
+  refresh(){
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
+  }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad PortfolioPage")
 
     this.showDonations();
     this.getAmount();
+    //this.navCtrl.setRoot(this.navCtrl.getActive().component);
     
   }
 

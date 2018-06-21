@@ -11,9 +11,11 @@ import { FeedPage } from '../feed/feed';
 })
 export class TabsPage {
  
-  FeedRoot: any = FeedPage
-  CharitylistRoot: any = CharitylistPage;
+  
   PortfolioRoot: any = PortfolioPage;
+  CharitylistRoot: any = CharitylistPage;
+  FeedRoot: any = FeedPage;
+  
   myIndex: number;
 
  
