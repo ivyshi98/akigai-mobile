@@ -4,7 +4,6 @@ import { HomePage } from '../home/home';
 import { Http } from '@angular/http';
 import { FeedPage } from '../feed/feed';
 import { CharitylistPage } from '../charitylist/charitylist';
-import { ProfilePage } from '../profile/profile';
 import { MenuPage } from '../menu/menu';
 import { TabsPage } from '../tabs/tabs';
 

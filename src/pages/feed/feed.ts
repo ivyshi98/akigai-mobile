@@ -15,13 +15,16 @@ export class FeedPage {
 
 
   public postProperties: Array<object> = [];
-  public postNumber: number;
+  public postNumber: number = 0;
+  public noPosts: boolean;
   // public likeSelected: boolean;
   // public likeCount: number;
 
   constructor(public menuCtrl: MenuController, public navCtrl: NavController, public navParams: NavParams, public http: Http) {
     // this.likeSelected = false;
     // this.likeCount = 0;
+    this.viewPage();
+    this.noPosts = false;
   }
 
   viewPage() {
@@ -32,6 +35,8 @@ export class FeedPage {
           console.log(result);
           this.postProperties = result.json();
           this.postNumber = result.json().length;
+          console.log("post Number=" + this.postNumber);
+          this.showNoPosts();
         },
         error => {
           console.log(error);
@@ -53,12 +58,22 @@ export class FeedPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad FeedPage');
     this.token = localStorage.getItem("Token");
-    console.log("profile token: ", this.token);
-    this.viewPage();
   }
 
   refresh() {
     this.navCtrl.setRoot(this.navCtrl.getActive().component);
+  }
+
+  showNoPosts() {
+    console.log('calling showNoPosts');
+    console.log(this.postNumber);
+    if (this.postNumber == 0) {
+      this.noPosts = true;
+    }
+    else {
+      console.log('posts = ' + this.postNumber);
+      this.noPosts = false;
+    }
   }
 
   // like() {
