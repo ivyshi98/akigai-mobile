@@ -2,19 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { Http } from '@angular/http';
-import { FeedPage } from '../feed/feed';
-import { CharitylistPage } from '../charitylist/charitylist';
-import { ProfilePage } from '../profile/profile';
 import { MenuPage } from '../menu/menu';
-import { TabsPage } from '../tabs/tabs';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -26,39 +16,50 @@ export class LoginPage {
   public username: string;
   public password: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
+  public login: FormGroup;
+  public submitted: boolean = false;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public http: Http,
+    public formBuilder: FormBuilder) {
+    this.login = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    })
   }
 
-  navToFeed(){
-    this.http.post("http://localhost:3000/login",{
-        username: this.username,
-        password: this.password
-      })
+  onSubmit() {
+    this.submitted = true;
+
+    if (this.login.valid) {
+      this.navToFeed();
+    }
+  }
+
+  navToFeed() {
+    this.http.post("http://localhost:3000/login", {
+      username: this.login.get('username').value,
+      password: this.login.get('password').value
+    })
       .subscribe(
         result => {
-
           var Usertoken = result.json();
           localStorage.setItem("Token", Usertoken.token);
           this.navCtrl.setRoot(MenuPage);
           this.navCtrl.popToRoot();
-          // this.navCtrl.push(ProfilePage,{
-          //   username:this.username,
-          //   password:this.password
-          // });
         },
         error => {
           console.log(error);
         }
       );
-    }
+  }
 
   navHome() {
     this.navCtrl.push(HomePage);
   }
 
-  // navToTabs() {
-  //   this.navCtrl.setRoot(TabsPage);
-  // }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }

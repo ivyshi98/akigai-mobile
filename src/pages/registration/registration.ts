@@ -5,29 +5,16 @@ import { Http } from '@angular/http';
 import { LoginPage } from '../login/login';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
-/**
- * Generated class for the RegistrationPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-registration',
   templateUrl: 'registration.html',
 })
 export class RegistrationPage {
-      public username:string;
-      public password:string;
-      public firstname:string;
-      public lastname:string;
-      public email: string;
-      public passwordCheck: string;
 
-      public registration: FormGroup;
-      public submitted: boolean = false;
-    
+  public registration: FormGroup;
+  public submitted: boolean = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public formBuilder: FormBuilder) {
     this.registration = this.formBuilder.group({
       username: ['', Validators.required],
@@ -47,33 +34,33 @@ export class RegistrationPage {
     }
   }
 
-  register(){
-    if(this.registration.get('password').value == this.registration.get('passwordCheck').value) {
-      this.http.post("http://localhost:3000/registration",{
+  register() {
+    if (this.registration.get('password').value == this.registration.get('passwordCheck').value) {
+      this.http.post("http://localhost:3000/registration", {
         username: this.registration.get('username').value,
         password: this.registration.get('password').value,
         firstname: this.registration.get('firstname').value,
         lastname: this.registration.get('lastname').value,
         email: this.registration.get('email').value
       })
-      .subscribe(
-        result => {
-          console.log(result);
-  
-          this.navCtrl.push(LoginPage,{
-            username: this.registration.get('username').value,
-            password: this.registration.get('password').value,
-            firstname: this.registration.get('firstname').value,
-            lastname: this.registration.get('lastname').value,
-            email: this.registration.get('email').value,
-          });
-        },
-        error => {
-          console.log(error);
-        }
-      );
+        .subscribe(
+          result => {
+            console.log(result);
+
+            this.navCtrl.push(LoginPage, {
+              username: this.registration.get('username').value,
+              password: this.registration.get('password').value,
+              firstname: this.registration.get('firstname').value,
+              lastname: this.registration.get('lastname').value,
+              email: this.registration.get('email').value,
+            });
+          },
+          error => {
+            console.log(error);
+          }
+        );
     }
-      console.log('Passwords do not match');
+    console.log('Passwords do not match');
   }
 
   navHome() {

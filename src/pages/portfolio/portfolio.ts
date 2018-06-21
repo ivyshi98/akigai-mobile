@@ -2,11 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Users } from '../../models/users';
-import {HomePage } from '../../pages/home/home';
-
 import { Chart } from 'chart.js';
-
-
 
 @IonicPage()
 @Component({
