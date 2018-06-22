@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { Http } from '@angular/http';
 import { MenuPage } from '../menu/menu';
@@ -25,6 +25,7 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public http: Http,
+    public alertCtrl: AlertController,
     public formBuilder: FormBuilder) {
     this.login = this.formBuilder.group({
       username: ['', Validators.required],
@@ -34,10 +35,60 @@ export class LoginPage {
 
   onSubmit() {
     this.submitted = true;
+    this.checkLogin();
 
     if (this.login.valid) {
       this.navToFeed();
     }
+  }
+
+  checkLogin() {
+    this.http.post(this.getBaseUrl.getBaseUrl() + "/checkUser", {
+      username: this.login.get('username').value,
+      password: this.login.get('password').value
+    })
+
+    .subscribe(
+      result => {
+        var credentials = result.json();
+        console.log(credentials);
+        if (credentials.notExist == true) {
+          let alert = this.alertCtrl.create({
+            title: 'Sorry, invalid credentials',
+            buttons: [
+              {
+                text: 'Ok',
+                role: 'cancel',
+                handler: () => {
+                  console.log('Cancel clicked');
+                }
+              },
+            ]
+          });
+          alert.present();
+        }
+
+        if (credentials.invalid == true) {
+          let alert = this.alertCtrl.create({
+            title: 'Password or username is incorrect',
+            buttons: [
+              {
+                text: 'Ok',
+                role: 'cancel',
+                handler: () => {
+                  console.log('Cancel clicked');
+                }
+              },
+            ]
+          });
+          alert.present();
+        }
+      },
+
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   navToFeed() {
